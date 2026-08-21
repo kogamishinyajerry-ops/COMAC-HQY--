@@ -1,0 +1,149 @@
+schema_version: 1
+ontology_type: regulatory_clause
+default_source_id: hqy-curated-ontology
+disclaimer_zh: 条款标签用于跨源检索和工程提示，正式适用性与原文须回到官方规章核对。
+disclaimer_en: Clause labels support retrieval only; applicability and text must be verified against official regulations.
+entities:
+  - &far777
+    id: clause:far-25.777
+    label_zh: FAR 25.777 驾驶舱操纵件
+    label_en: FAR 25.777 Cockpit controls
+    authority: FAA
+    regulation: 14 CFR Part 25
+    clause_number: '25.777'
+    source_id: faa-25-flightdeck-controls
+    component_ids: [forward_lever, engine_grouping, retention_layout]
+    keyword_groups:
+      - [cockpit control, flight deck control, control arrangement, 驾驶舱操纵, 操纵布局]
+      - [readily accessible, located, identified, 可达, 布置, 识别]
+  - &far779
+    id: clause:far-25.779
+    label_zh: FAR 25.779 操纵件运动与作用
+    label_en: FAR 25.779 Motion and effect of cockpit controls
+    authority: FAA
+    regulation: 14 CFR Part 25
+    clause_number: '25.779'
+    source_id: faa-25-flightdeck-controls
+    component_ids: [forward_lever, reverse_lever]
+    keyword_groups:
+      - [motion and effect, direction of movement, forward movement, 操纵方向, 向前运动]
+      - [increase thrust, increase power, decrease thrust, 增加推力, 减小推力]
+  - &far1141
+    id: clause:far-25.1141
+    label_zh: FAR 25.1141 动力装置操纵件通则
+    label_en: FAR 25.1141 Powerplant controls general
+    authority: FAA
+    regulation: 14 CFR Part 25
+    clause_number: '25.1141'
+    source_id: faa-25-powerplant-controls
+    component_ids: [forward_lever, engine_grouping, retention_layout, fadec, eec, thrust_control_law]
+    keyword_groups:
+      - [powerplant control, engine control, thrust control, 动力装置操纵, 发动机控制]
+      - [independent control, simultaneous control, control each engine, 独立控制, 同时操纵]
+      - [full authority, electronic engine control, fadec, eec, 全权限数字, 电子发动机控制]
+  - &far1143
+    id: clause:far-25.1143
+    label_zh: FAR 25.1143 发动机操纵件
+    label_en: FAR 25.1143 Engine controls
+    authority: FAA
+    regulation: 14 CFR Part 25
+    clause_number: '25.1143'
+    source_id: faa-25-powerplant-controls
+    component_ids: [forward_lever, engine_grouping, fuel_cutoff, fadec, eec, thrust_control_law, engine_control_channel]
+    keyword_groups:
+      - [engine control, throttle control, power lever, 发动机操纵, 油门控制]
+      - [fuel cutoff, shutoff, separate control, 燃油切断, 分别控制]
+      - [fadec, eec, electronic engine control, dual channel, redundant, 全权限数字, 双通道]
+  - &far1155
+    id: clause:far-25.1155
+    label_zh: FAR 25.1155 反推力与低于飞行慢车
+    label_en: FAR 25.1155 Reverse thrust and below flight idle
+    authority: FAA
+    regulation: 14 CFR Part 25
+    clause_number: '25.1155'
+    source_id: faa-25-reverse
+    component_ids: [reverse_lever, flight_idle_gate]
+    keyword_groups:
+      - [reverse thrust, thrust reverser, reverse lever, 反推, 反推力]
+      - [flight idle, below idle, positive lock, separate action, 飞行慢车, 确实锁止, 明显动作]
+  - <<: *far777
+    id: clause:cs-25.777
+    label_zh: CS 25.777 驾驶舱操纵件
+    label_en: CS 25.777 Cockpit controls
+    authority: EASA
+    regulation: CS-25
+    source_id: easa-cs25-flightdeck-controls
+  - <<: *far779
+    id: clause:cs-25.779
+    label_zh: CS 25.779 操纵件运动与作用
+    label_en: CS 25.779 Motion and effect of cockpit controls
+    authority: EASA
+    regulation: CS-25
+    source_id: easa-cs25-flightdeck-controls
+  - <<: *far1141
+    id: clause:cs-25.1141
+    label_zh: CS 25.1141 动力装置操纵件通则
+    label_en: CS 25.1141 Powerplant controls general
+    authority: EASA
+    regulation: CS-25
+    source_id: easa-cs25-powerplant-controls
+  - <<: *far1143
+    id: clause:cs-25.1143
+    label_zh: CS 25.1143 发动机操纵件
+    label_en: CS 25.1143 Engine controls
+    authority: EASA
+    regulation: CS-25
+    source_id: easa-cs25-powerplant-controls
+  - <<: *far1155
+    id: clause:cs-25.1155
+    label_zh: CS 25.1155 反推力与低于飞行慢车
+    label_en: CS 25.1155 Reverse thrust and below flight idle
+    authority: EASA
+    regulation: CS-25
+    source_id: easa-cs25-powerplant-controls
+  - <<: *far777
+    id: clause:ccar-25.777
+    label_zh: CCAR-25.777 驾驶舱操纵件
+    label_en: CCAR-25.777 Cockpit controls
+    authority: CAAC
+    regulation: CCAR-25-R4
+    source_id: caac-ccar25-r4-controls
+  - <<: *far779
+    id: clause:ccar-25.779
+    label_zh: CCAR-25.779 操纵件运动与作用
+    label_en: CCAR-25.779 Motion and effect of cockpit controls
+    authority: CAAC
+    regulation: CCAR-25-R4
+    source_id: caac-ccar25-r4-controls
+  - <<: *far1141
+    id: clause:ccar-25.1141
+    label_zh: CCAR-25.1141 动力装置操纵件通则
+    label_en: CCAR-25.1141 Powerplant controls general
+    authority: CAAC
+    regulation: CCAR-25-R4
+    source_id: caac-ccar25-r4-controls
+  - <<: *far1143
+    id: clause:ccar-25.1143
+    label_zh: CCAR-25.1143 发动机操纵件
+    label_en: CCAR-25.1143 Engine controls
+    authority: CAAC
+    regulation: CCAR-25-R4
+    source_id: caac-ccar25-r4-controls
+  - <<: *far1155
+    id: clause:ccar-25.1155
+    label_zh: CCAR-25.1155 反推力与低于飞行慢车
+    label_en: CCAR-25.1155 Reverse thrust and below flight idle
+    authority: CAAC
+    regulation: CCAR-25-R4
+    source_id: caac-ccar25-r4-controls
+relations:
+  - {subject_id: clause:far-25.777, predicate: equivalent_scope, object_id: clause:cs-25.777, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.777, predicate: equivalent_scope, object_id: clause:ccar-25.777, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.779, predicate: equivalent_scope, object_id: clause:cs-25.779, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.779, predicate: equivalent_scope, object_id: clause:ccar-25.779, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1141, predicate: equivalent_scope, object_id: clause:cs-25.1141, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1141, predicate: equivalent_scope, object_id: clause:ccar-25.1141, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1143, predicate: equivalent_scope, object_id: clause:cs-25.1143, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1143, predicate: equivalent_scope, object_id: clause:ccar-25.1143, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1155, predicate: equivalent_scope, object_id: clause:cs-25.1155, evidence_basis: clause_number_alignment}
+  - {subject_id: clause:far-25.1155, predicate: equivalent_scope, object_id: clause:ccar-25.1155, evidence_basis: clause_number_alignment}

@@ -1,0 +1,9 @@
+# COMAC-HQY-专利助手 运行依赖
+# 基础库 (必装)
+pyyaml>=6.0
+
+# Web 服务 (app.py / serve 子命令)
+# 仅用标准库 http.server,无第三方依赖
+
+# ---- 开发依赖 ----
+pytest>=7.0

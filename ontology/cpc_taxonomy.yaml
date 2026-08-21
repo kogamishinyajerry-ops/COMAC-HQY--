@@ -1,0 +1,38 @@
+schema_version: 1
+ontology_type: cpc_class
+default_source_id: wipo-cpc-scheme
+disclaimer_zh: 本表仅作油门台检索范围治理，分类号与法律状态须以官方 CPC 数据为准。
+disclaimer_en: Search-scope taxonomy only; verify classifications and legal status against official CPC data.
+entities:
+  - {id: cpc:B64D, label_zh: 飞机设备与装置, label_en: Equipment for fitting in or to aircraft, code: B64D, scope_level: broad}
+  - id: cpc:B64D31/00
+    label_zh: 飞机动力装置控制系统
+    label_en: Power plant control systems for aircraft
+    code: B64D31/00
+    parent_id: cpc:B64D
+    scope_level: core
+    aliases: [B64D31, B64D 31/00]
+  - {id: cpc:B64D31/02, label_zh: 同时控制两个或多个发动机, label_en: Simultaneously controlling two or more engines, code: B64D31/02, parent_id: cpc:B64D31/00, scope_level: core}
+  - {id: cpc:B64D31/04, label_zh: 控制单台发动机, label_en: Controlling a single engine, code: B64D31/04, parent_id: cpc:B64D31/00, scope_level: core}
+  - {id: cpc:B64D31/06, label_zh: 控制推进剂或燃料供给, label_en: Controlling supply of propellant or fuel, code: B64D31/06, parent_id: cpc:B64D31/00, scope_level: core}
+  - {id: cpc:B64D31/10, label_zh: 控制倒推或反推力, label_en: Controlling reversing or thrust reversal, code: B64D31/10, parent_id: cpc:B64D31/00, scope_level: core}
+  - {id: cpc:B64D31/12, label_zh: 动力装置控制应急或测试装置, label_en: Emergency or testing devices for power plant control, code: B64D31/12, parent_id: cpc:B64D31/00, scope_level: core}
+  - {id: cpc:B64D33/00, label_zh: 反推力装置, label_en: Thrust reversal arrangements, code: B64D33/00, parent_id: cpc:B64D, scope_level: core}
+  - {id: cpc:B64D33/10, label_zh: 反推力联锁或安全装置, label_en: Interlock or safety devices for thrust reversal, code: B64D33/10, parent_id: cpc:B64D33/00, scope_level: core}
+  - id: cpc:B64D13/00
+    label_zh: 飞机座舱环境与相关设备
+    label_en: Aircraft cabin environment and associated equipment
+    code: B64D13/00
+    parent_id: cpc:B64D
+    scope_level: out_of_scope
+    aliases: [B64D13, B64D 13/00]
+    exclusion_reason_zh: 该主组不是油门台核心分类，旧 BigQuery 切片由此引入大量空调、氧气、通风和客舱噪声。
+  - {id: cpc:H01H19/00, label_zh: 操作件经传动机构驱动触点的开关, label_en: Switches with transmission between operating part and movable contact, code: H01H19/00, scope_level: adjacent}
+  - {id: cpc:H01H21/00, label_zh: 操作件在平面内移动的开关, label_en: Switches operated by an operating part moving in a plane, code: H01H21/00, scope_level: adjacent}
+  - {id: cpc:B60K26/00, label_zh: 车辆驾驶员作用的控制装置, label_en: Arrangements for driver-operated controls in vehicles, code: B60K26/00, scope_level: adjacent}
+  - {id: cpc:B60K41/00, label_zh: 车辆推进单元组合控制, label_en: Conjoint control of vehicle propulsion units, code: B60K41/00, scope_level: adjacent}
+  - {id: cpc:G05D1/00, label_zh: 运载工具位置或航向控制, label_en: Control of position or course of vehicles, code: G05D1/00, scope_level: adjacent}
+  - {id: cpc:H01H13/00, label_zh: 直线运动操作件开关, label_en: Switches with rectilinearly movable operating part, code: H01H13/00, scope_level: adjacent}
+relations:
+  - {subject_id: cpc:B64D31/10, predicate: related_to, object_id: cpc:B64D33/00, evidence_basis: curated}
+  - {subject_id: cpc:B64D33/10, predicate: narrows, object_id: cpc:B64D33/00, evidence_basis: official_hierarchy}

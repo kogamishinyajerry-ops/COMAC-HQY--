@@ -1,0 +1,55 @@
+{
+  "version": 7,
+  "generated_at": "2026-07-29",
+  "database": "throttle_knowledge.db",
+  "retrieval": "offline lexical ranking",
+  "future_vector_fields": [
+    "embedding_model",
+    "embedding_dimensions",
+    "embedding_blob"
+  ],
+  "citation_key": "source_id",
+  "chunk_policy": "one focused claim group per chunk; bilingual parallel text",
+  "regulatory_scope": "FAA 14 CFR Part 25, EASA CS-25 and CAAC CCAR-25 transport/large-aeroplane throttle controls",
+  "regulatory_tables": [
+    "components",
+    "regulatory_constraints"
+  ],
+  "innovation_tables": [
+    "design_component_options",
+    "patents",
+    "pilot_needs",
+    "invention_patterns"
+  ],
+  "methodology_tables": [
+    "triz_principles",
+    "patent_law_articles",
+    "ata_chapters"
+  ],
+  "ontology_tables": [
+    "ontology_registry",
+    "ontology_entities",
+    "ontology_aliases",
+    "ontology_relations"
+  ],
+  "cross_source_tables": [
+    "clause_mentions",
+    "cross_match"
+  ],
+  "ontology_files": [
+    "aircraft_families.yaml",
+    "throttle_components.yaml",
+    "regulatory_clauses.yaml",
+    "cpc_taxonomy.yaml"
+  ],
+  "local_archive_tables": [
+    "source_archive_runs",
+    "source_snapshots",
+    "source_documents",
+    "source_archive_chunks",
+    "source_archive_fts"
+  ],
+  "patent_note": "Claim summaries and overlap prompts are search aids, not novelty, freedom-to-operate or patentability opinions.",
+  "safety_note": "Public educational material only; not for aircraft operation, maintenance, certification or manufacturing.",
+  "legal_note": "patent_law_articles are retrieval paraphrases; a patent professional must verify official text before filing."
+}

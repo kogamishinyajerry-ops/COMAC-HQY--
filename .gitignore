@@ -1,0 +1,79 @@
+# ===== COMAC-HQY-专利助手 .gitignore =====
+# 轻量镜像:代码 + 本体 yaml + 小产物入仓,数据库与原始归档按需重建
+
+# ---- Python ----
+__pycache__/
+*.py[cod]
+*$py.class
+.Python
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.egg-info/
+build/
+dist/
+
+# ---- 数据库 / 大数据 (不进 git,按 README 指引重建) ----
+*.db
+*.db.bak*
+*.sqlite
+*.sqlite3
+data/throttle_knowledge.db
+data/throttle_knowledge.db.bak*
+throttle_knowledge.db      # 根目录残留空文件
+
+# 专利原始 JSON 抓取池 (按需重建,54M+)
+data/source_archive/
+data/knowledge_base/_generated/
+
+# ---- WorkBuddy 会话记忆 (含内部决策, 不进 git) ----
+.workbuddy/
+
+# ---- 凭据 / 环境 ----
+.env
+.env.*
+*.secret
+secrets.yaml
+credentials.json
+
+# ---- 系统 ----
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+*~
+
+# ---- IDE ----
+.vscode/
+.idea/
+*.iml
+
+# ---- 日志 ----
+*.log
+logs/
+
+# ---- 输出产物 (yaml 保留, csv/json 排除) ----
+outputs/*.csv
+outputs/*.json
+outputs/governance/
+
+# ---- 历史一次性脚本 / Windows 启动 / 旧产物 ----
+bench_prior_art_final.py
+filter_prior_art_relevant.py
+import_prior_art.py
+translate_prior_art_full.py
+translate_prior_art_sample.py
+start.ps1
+启动油门台.bat
+交付安装说明.md
+outputs/BigQuery*
+outputs/CodeBuddy*
+outputs/本体论*
+outputs/专利提案_*
+outputs/research_reference/
+outputs/pace_export.yaml.bak*
+outputs/接入完成报告.md
+outputs/先有技术全文库_*

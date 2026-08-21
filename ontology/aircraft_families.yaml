@@ -1,0 +1,61 @@
+schema_version: 1
+ontology_type: aircraft_family
+default_source_id: hqy-curated-ontology
+disclaimer_zh: 项目内部工程分类，仅用于检索归一，不代表型号适航或构型认定。
+disclaimer_en: Project-curated search taxonomy; not an airworthiness or configuration determination.
+entities:
+  - id: aircraft:a320-family
+    label_zh: A320 系列
+    label_en: A320 Family
+    aliases: [A318, A319, A320, A321, A320neo, A321neo, Airbus A320]
+    model_ids: [a320]
+    manufacturer: Airbus
+  - id: aircraft:b737ng-family
+    label_zh: B737NG 系列
+    label_en: Boeing 737 Next Generation
+    aliases: [737NG, B737NG, 737-600, 737-700, 737-800, 737-900, Boeing 737NG]
+    model_ids: [b737ng]
+    manufacturer: Boeing
+  - id: aircraft:c919-family
+    label_zh: C919 系列
+    label_en: COMAC C919 Family
+    aliases: [C919, COMAC C919, 商飞 C919]
+    model_ids: [c919]
+    manufacturer: COMAC
+  - id: aircraft:f16-family
+    label_zh: F-16 系列
+    label_en: F-16 Family
+    aliases: [F-16, F16, F-16C, Fighting Falcon]
+    model_ids: [f16c]
+    manufacturer: Lockheed Martin
+  - id: aircraft:fa18-family
+    label_zh: F/A-18E/F 系列
+    label_en: F/A-18E/F Super Hornet Family
+    aliases: [F/A-18E, F/A-18F, FA-18E, FA-18F, Super Hornet]
+    model_ids: [fa18e]
+    manufacturer: Boeing
+  - id: aircraft:typhoon-family
+    label_zh: 台风系列
+    label_en: Eurofighter Typhoon Family
+    aliases: [Typhoon, Eurofighter, EF2000]
+    model_ids: [typhoon]
+    manufacturer: Eurofighter
+  - id: aircraft:rafale-family
+    label_zh: 阵风系列
+    label_en: Dassault Rafale Family
+    aliases: [Rafale, Rafale B, Rafale C, Rafale M]
+    model_ids: [rafale]
+    manufacturer: Dassault Aviation
+  - id: aircraft:gripen-family
+    label_zh: 鹰狮系列
+    label_en: Saab Gripen Family
+    aliases: [Gripen, JAS 39, Gripen C, Gripen E]
+    model_ids: [gripen]
+    manufacturer: Saab
+  - id: aircraft:su35-family
+    label_zh: 苏-35 系列
+    label_en: Sukhoi Su-35 Family
+    aliases: [Su-35, Su35, Su-35S, Flanker-E]
+    model_ids: [su35s]
+    manufacturer: UAC
+relations: []

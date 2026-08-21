@@ -1,0 +1,1155 @@
+_meta:
+  source: HQY-throttle-patent-assistant
+  version: 0.1.0
+  generated_at: '2026-08-20T04:43:03Z'
+  db_path: data/throttle_knowledge.db
+  hqy_note: curated 专利与适航条款的人工/半自动关联,非全量检索池
+coverage:
+  curated_patents: 8
+  cross_matches: 36
+  throttle_components: 16
+  clause_entities: 15
+curated_patents:
+- id: cn102452481
+  publication_no: CN102452481A
+  jurisdiction: CN
+  assignee: 公开申请人（以 CNIPA 为准）
+  priority_date: '2010-10-29'
+  title_zh: 蜗轮蜗杆与摩擦片自动/手动油门
+  title_en: Worm-gear/friction automatic-manual throttle
+  status_zh: 申请视为撤回；公开内容仍可构成现有技术线索
+  status_en: Application deemed withdrawn; disclosure remains a prior-art lead
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-cn102452481
+- id: cn109606705
+  publication_no: CN109606705B
+  jurisdiction: CN
+  assignee: 空客相关申请人（以官方登记为准）
+  priority_date: '2018-12-11'
+  title_zh: 不同高度位置可释放固定的油门台
+  title_en: Quadrant releasably fixed at different height positions
+  status_zh: 授权文献；须在 CNIPA 复核状态与权利人
+  status_en: Granted publication; verify status and proprietor at CNIPA
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-cn109606705
+- id: cn117542251
+  publication_no: CN117542251B
+  jurisdiction: CN
+  assignee: 北京蓝天航空科技股份有限公司
+  priority_date: '2023-10-25'
+  title_zh: 一体化仿真油门台模块
+  title_en: Integrated simulator throttle-quadrant module
+  status_zh: 公开聚合页显示已授权；须在 CNIPA 复核
+  status_en: Aggregator shows granted; verify at CNIPA
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-cn117542251
+- id: us10633105
+  publication_no: US10633105B2
+  jurisdiction: US
+  assignee: Innovative Solutions & Support
+  priority_date: '2017-11-09'
+  title_zh: 油门杆振动告警与性能调节
+  title_en: Throttle-lever vibration alert and performance adjust
+  status_zh: 公开聚合页标示有效；须复核官方状态
+  status_en: Aggregator lists active; verify official status
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-us10633105
+- id: us12162616
+  publication_no: US12162616B2
+  jurisdiction: US
+  assignee: Innovative Solutions & Support
+  priority_date: '2021-12-05'
+  title_zh: 动态虚拟卡位自动油门界面
+  title_en: Dynamic virtual-detent autothrottle interface
+  status_zh: 公开聚合页标示有效；须复核权利要求与家族
+  status_en: Aggregator lists active; verify claims and family
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-us12162616
+- id: us12258138
+  publication_no: US12258138B2
+  jurisdiction: US
+  assignee: Gulfstream Aerospace Corp
+  priority_date: '2022-06-08'
+  title_zh: 手柄集成视觉指示与纠正动作
+  title_en: Handle-integrated visual indication and corrective action
+  status_zh: 公开聚合页标示有效；须在 USPTO 官方登记簿复核
+  status_en: Aggregator lists active; verify in the official USPTO register
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-us12258138
+- id: us7143984
+  publication_no: US7143984B2
+  jurisdiction: US
+  assignee: Airbus France
+  priority_date: '2003-04-18'
+  title_zh: 正推/反推/辅助连续控制多导轨
+  title_en: Forward/reverse/auxiliary continuous multi-track lever
+  status_zh: 历史授权文献；须复核期限和家族
+  status_en: Historic granted document; verify term and family
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-us7143984
+- id: us9043050
+  publication_no: US9043050B2
+  jurisdiction: US
+  assignee: The Boeing Company
+  priority_date: '2008-08-13'
+  title_zh: 可编程中间反推卡位
+  title_en: Programmable intermediate reverse detent
+  status_zh: 聚合页显示费用相关失效；仍可能是现有技术
+  status_en: Aggregator shows fee-related lapse; still potentially prior art
+  applicable_aircraft:
+  - aircraft:a320-family
+  - aircraft:b737ng-family
+  - aircraft:c919-family
+  source_id: patent-us9043050
+cross_matches:
+- id: xmatch-97b2ff8c80afa315
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-3d11494f85bf57b1
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1143
+  match_strength: MEDIUM
+  score: 85.0
+  basis:
+    matched_components:
+    - engine_control_channel
+    - forward_lever
+    matched_terms:
+    - redundant
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-2580ce388619fcec
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-e8b115371edf4ff6
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-bdee240eca1f5a9f
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-3eb76c4f5d0d57cd
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1143
+  match_strength: MEDIUM
+  score: 85.0
+  basis:
+    matched_components:
+    - engine_control_channel
+    - forward_lever
+    matched_terms:
+    - redundant
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-cd7d3207bfece2c4
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:cs-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-5b429d3525042fb2
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:cs-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-4c2ad5a953f26235
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:far-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-61bfe856e851da78
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:far-25.1143
+  match_strength: MEDIUM
+  score: 85.0
+  basis:
+    matched_components:
+    - engine_control_channel
+    - forward_lever
+    matched_terms:
+    - redundant
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-10fded9ba3fda0fb
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:far-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-76206e171c923452
+  subject_type: patent
+  subject_id: cn102452481
+  object_type: regulatory_clause
+  object_id: clause:far-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - 冗余
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-27f55a6de3cc7e62
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-19e4a54f7da108b5
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1143
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-ce7bc6b18cce6d46
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-588f6b1fb7ae0193
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-d85db021e21f9aaf
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-208c09803f361ad7
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1143
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-9272d221038c1428
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:cs-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-eaf985cfb2fbd786
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:cs-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-ca9ea15a5134ee36
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:far-25.1141
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-151b781be1771d32
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:far-25.1143
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-3d30d72f1095578c
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:far-25.777
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-9533605132fb8303
+  subject_type: patent
+  subject_id: us10633105
+  object_type: regulatory_clause
+  object_id: clause:far-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - forward_lever
+    matched_terms:
+    - throttle lever
+    - 油门杆
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-808ed9c0720c23e5
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-7bbbbf931058c436
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-8358a0f84f51d018
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-37ec235856000e30
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:cs-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-780969f1bf0aeea8
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:far-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-92826d2cb4567507
+  subject_type: patent
+  subject_id: us7143984
+  object_type: regulatory_clause
+  object_id: clause:far-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-b4488d029263b13e
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-4d95c863c5eef594
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:ccar-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-6dbddeb92352c198
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:cs-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-593aac6b59132b6f
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:cs-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-bb2751ac5d2dffaa
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:far-25.1155
+  match_strength: MEDIUM
+  score: 65.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: MEDIUM
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+- id: xmatch-5d9458db17301e75
+  subject_type: patent
+  subject_id: us9043050
+  object_type: regulatory_clause
+  object_id: clause:far-25.779
+  match_strength: WEAK
+  score: 30.0
+  basis:
+    matched_components:
+    - reverse_lever
+    matched_terms:
+    - 反推
+    cpc_scope: unknown
+    applicable_aircraft:
+    - aircraft:a320-family
+    - aircraft:b737ng-family
+    - aircraft:c919-family
+    rule: text_groups+component_anchor+cpc_scope
+  source_credibility_tier: unclassified
+  evidence_strength: WEAK
+  verification_status: suggested
+  eligible_for_fact: false
+  created_at: '2026-08-20T04:42:04+00:00'
+throttle_components:
+- id: component:throttle-quadrant
+  label_zh: 油门台
+  label_en: Throttle Quadrant
+  component_id: throttle-quadrant
+  scope_level: core
+- id: component:forward-lever
+  label_zh: 正推力杆
+  label_en: Forward Thrust Lever
+  component_id: forward_lever
+  scope_level: core
+- id: component:reverse-lever
+  label_zh: 反推力杆
+  label_en: Reverse Thrust Lever
+  component_id: reverse_lever
+  scope_level: core
+- id: component:detent
+  label_zh: 卡位
+  label_en: Detent
+  component_id: detent
+  scope_level: core
+- id: component:flight-idle-gate
+  label_zh: 飞行慢车门锁
+  label_en: Flight Idle Gate
+  component_id: flight_idle_gate
+  scope_level: core
+- id: component:engine-grouping
+  label_zh: 多发分控与联控
+  label_en: Multi-engine Grouping
+  component_id: engine_grouping
+  scope_level: core
+- id: component:fuel-cutoff
+  label_zh: 燃油切断联锁
+  label_en: Fuel Cutoff Interlock
+  component_id: fuel_cutoff
+  scope_level: core
+- id: component:retention-layout
+  label_zh: 保持与布局机构
+  label_en: Retention and Layout
+  component_id: retention_layout
+  scope_level: core
+- id: component:toga-switch
+  label_zh: TO/GA 按钮
+  label_en: TO/GA Switch
+  component_id: toga-switch
+  scope_level: core
+- id: component:autothrottle
+  label_zh: 自动油门
+  label_en: Autothrottle
+  component_id: autothrottle
+  scope_level: core
+- id: component:position-sensor
+  label_zh: 推力手柄位置传感器
+  label_en: Throttle Position Sensor
+  component_id: position-sensor
+  scope_level: core
+- id: component:fadec
+  label_zh: 全权限数字发动机控制
+  label_en: FADEC (Full Authority Digital Engine Control)
+  component_id: fadec
+  scope_level: core
+- id: component:eec
+  label_zh: 电子发动机控制
+  label_en: EEC (Electronic Engine Control)
+  component_id: eec
+  scope_level: core
+- id: component:engine-control-channel
+  label_zh: 控制通道冗余
+  label_en: Engine Control Channel Redundancy
+  component_id: engine_control_channel
+  scope_level: core
+- id: component:overspeed-protection
+  label_zh: 发动机超转保护
+  label_en: Overspeed Protection
+  component_id: overspeed_protection
+  scope_level: core
+- id: component:thrust-control-law
+  label_zh: 推力控制律
+  label_en: Thrust Control Law
+  component_id: thrust_control_law
+  scope_level: core
+clause_entities:
+- id: clause:far-25.777
+  label_zh: FAR 25.777 驾驶舱操纵件
+  label_en: FAR 25.777 Cockpit controls
+  authority: FAA
+  regulation: 14 CFR Part 25
+  clause_number: '25.777'
+- id: clause:far-25.779
+  label_zh: FAR 25.779 操纵件运动与作用
+  label_en: FAR 25.779 Motion and effect of cockpit controls
+  authority: FAA
+  regulation: 14 CFR Part 25
+  clause_number: '25.779'
+- id: clause:far-25.1141
+  label_zh: FAR 25.1141 动力装置操纵件通则
+  label_en: FAR 25.1141 Powerplant controls general
+  authority: FAA
+  regulation: 14 CFR Part 25
+  clause_number: '25.1141'
+- id: clause:far-25.1143
+  label_zh: FAR 25.1143 发动机操纵件
+  label_en: FAR 25.1143 Engine controls
+  authority: FAA
+  regulation: 14 CFR Part 25
+  clause_number: '25.1143'
+- id: clause:far-25.1155
+  label_zh: FAR 25.1155 反推力与低于飞行慢车
+  label_en: FAR 25.1155 Reverse thrust and below flight idle
+  authority: FAA
+  regulation: 14 CFR Part 25
+  clause_number: '25.1155'
+- id: clause:cs-25.777
+  label_zh: CS 25.777 驾驶舱操纵件
+  label_en: CS 25.777 Cockpit controls
+  authority: EASA
+  regulation: CS-25
+  clause_number: '25.777'
+- id: clause:cs-25.779
+  label_zh: CS 25.779 操纵件运动与作用
+  label_en: CS 25.779 Motion and effect of cockpit controls
+  authority: EASA
+  regulation: CS-25
+  clause_number: '25.779'
+- id: clause:cs-25.1141
+  label_zh: CS 25.1141 动力装置操纵件通则
+  label_en: CS 25.1141 Powerplant controls general
+  authority: EASA
+  regulation: CS-25
+  clause_number: '25.1141'
+- id: clause:cs-25.1143
+  label_zh: CS 25.1143 发动机操纵件
+  label_en: CS 25.1143 Engine controls
+  authority: EASA
+  regulation: CS-25
+  clause_number: '25.1143'
+- id: clause:cs-25.1155
+  label_zh: CS 25.1155 反推力与低于飞行慢车
+  label_en: CS 25.1155 Reverse thrust and below flight idle
+  authority: EASA
+  regulation: CS-25
+  clause_number: '25.1155'
+- id: clause:ccar-25.777
+  label_zh: CCAR-25.777 驾驶舱操纵件
+  label_en: CCAR-25.777 Cockpit controls
+  authority: CAAC
+  regulation: CCAR-25-R4
+  clause_number: '25.777'
+- id: clause:ccar-25.779
+  label_zh: CCAR-25.779 操纵件运动与作用
+  label_en: CCAR-25.779 Motion and effect of cockpit controls
+  authority: CAAC
+  regulation: CCAR-25-R4
+  clause_number: '25.779'
+- id: clause:ccar-25.1141
+  label_zh: CCAR-25.1141 动力装置操纵件通则
+  label_en: CCAR-25.1141 Powerplant controls general
+  authority: CAAC
+  regulation: CCAR-25-R4
+  clause_number: '25.1141'
+- id: clause:ccar-25.1143
+  label_zh: CCAR-25.1143 发动机操纵件
+  label_en: CCAR-25.1143 Engine controls
+  authority: CAAC
+  regulation: CCAR-25-R4
+  clause_number: '25.1143'
+- id: clause:ccar-25.1155
+  label_zh: CCAR-25.1155 反推力与低于飞行慢车
+  label_en: CCAR-25.1155 Reverse thrust and below flight idle
+  authority: CAAC
+  regulation: CCAR-25-R4
+  clause_number: '25.1155'

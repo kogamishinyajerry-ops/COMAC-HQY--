@@ -1,0 +1,586 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="油门台图谱：民航与军用油门台双语资料、三维外观对比、功能对比和可追溯知识库。">
+  <meta name="theme-color" content="#081019">
+  <title>油门台图谱 · Throttle Atlas</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <aside class="sidebar">
+    <a class="brand" href="#overview" aria-label="Throttle Atlas home">
+      <span class="brand-mark"><i></i><i></i><i></i></span>
+      <span><strong>THROTTLE</strong><small>ATLAS / 油门台图谱</small></span>
+    </a>
+    <nav class="nav" aria-label="Main navigation">
+      <a class="active" href="#overview"><b>01</b><span data-i18n="nav_overview">总览</span></a>
+      <a href="#studio"><b>02</b><span data-i18n="nav_studio">专利设计</span></a>
+      <a href="#library"><b>03</b><span data-i18n="nav_library">型号库</span></a>
+      <a href="#visual"><b>04</b><span data-i18n="nav_visual">三维对比</span></a>
+      <a href="#function"><b>05</b><span data-i18n="nav_function">功能对比</span></a>
+      <a href="#regulations"><b>06</b><span data-i18n="nav_regulations">法规约束</span></a>
+      <a href="#knowledge"><b>07</b><span data-i18n="nav_knowledge">知识库</span></a>
+    </nav>
+    <div class="sidebar-foot">
+      <div class="system-status"><span></span><span data-i18n="local_online">本地系统在线</span></div>
+      <small>LOCALHOST · OFFLINE READY</small>
+    </div>
+  </aside>
+
+  <header class="topbar">
+    <button class="menu-button" aria-label="Toggle menu">☰</button>
+    <div class="breadcrumb"><span>ATLAS</span><b>/</b><span id="current-section">OVERVIEW</span></div>
+    <div class="top-actions">
+      <span class="date-code">DB · 2026.07</span>
+      <button id="lang-toggle" class="lang-toggle" type="button" aria-label="Switch language"><span>中</span><b>EN</b></button>
+    </div>
+  </header>
+
+  <main>
+    <section id="overview" class="hero section">
+      <div class="hero-copy">
+        <div class="eyebrow"><span>01</span><i></i><span data-i18n="eyebrow">航空人机界面资料平台</span></div>
+        <h1><span data-i18n="hero_title_1">从现有设计中</span><br><em data-i18n="hero_title_2">找到可专利的新解。</em></h1>
+        <p data-i18n="hero_copy">组装现有油门台组件，让适航规则划出不可破坏的安全边界，用专利权利要求定位高重合区域，再从飞行员真实报告中选择最值得解决的问题。</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#studio"><span data-i18n="start_design">开始专利设计</span><b>↗</b></a>
+          <a class="text-button" href="#regulations"><span data-i18n="inspect_limits">先看适航边界</span><b>→</b></a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="Animated throttle concept">
+        <div class="hud-label top"><span>THRUST / 推力</span><b>78.4%</b></div>
+        <div class="dial">
+          <div class="dial-ring"></div>
+          <div class="dial-inner"><small>MODE</small><strong>CLB</strong><span>A/THR ACTIVE</span></div>
+        </div>
+        <div class="twin-levers" aria-hidden="true">
+          <div class="lever left"><i></i><b></b></div>
+          <div class="lever right"><i></i><b></b></div>
+          <div class="lever-base"><span>1</span><span>2</span></div>
+        </div>
+        <div class="hud-label bottom"><span>DETENT</span><b>CL / MCT / TOGA</b></div>
+        <div class="technical-lines" aria-hidden="true"></div>
+      </div>
+      <div class="stats-strip">
+        <div><strong id="stat-models">9</strong><span data-i18n="stat_models">代表型号</span></div>
+        <div><strong id="stat-sources">17</strong><span data-i18n="stat_sources">可追溯来源</span></div>
+        <div><strong id="stat-chunks">16</strong><span data-i18n="stat_chunks">双语检索片段</span></div>
+        <div><strong id="stat-patents">8</strong><span data-i18n="stat_patents">专利权利要求线索</span></div>
+      </div>
+    </section>
+
+    <section id="studio" class="studio-section section" aria-labelledby="studio-title">
+      <div class="section-heading">
+        <div><span class="section-no">P / 01</span><p>PATENT DESIGN STUDIO</p></div>
+        <div>
+          <h2 id="studio-title" data-i18n="studio_title">第 2 章，把问题变成可交底的专利设计。</h2>
+          <p data-i18n="studio_copy">选择已经核验的问题和解决方向，系统按调研对比、创新点、技术效果、布局规划和市场因素展开完整方案；现有专利用于标出已知路径和待检索边界。</p>
+        </div>
+      </div>
+      <div class="inventor-lab">
+        <div class="inventor-head">
+          <div>
+            <span>01</span>
+            <div><small>CHAPTER 02 / 专利设计</small><h3 data-i18n="coinventor_title">先确定模块，再由法规与专利逐层收敛创新空间。</h3></div>
+          </div>
+          <p data-i18n="coinventor_copy">系统只对“双重约束后仍然成立”的创新点排序，并展开调研、技术架构、技术效果、布局和市场论证。</p>
+        </div>
+        <div class="module-workbench">
+          <div class="module-picker">
+            <div class="module-picker-head">
+              <div><span>STEP 01</span><h4 data-i18n="choose_patent_module">确定需要申请专利的模块</h4></div>
+              <p data-i18n="choose_patent_module_help">一次聚焦一个权利要求主题，避免把整台油门台写成松散拼装。</p>
+            </div>
+            <div id="patent-module-list" class="patent-module-list"></div>
+            <div id="module-scope-note" class="module-scope-note"></div>
+          </div>
+        </div>
+        <div class="constraint-funnel">
+          <section class="constraint-stage regulation-stage">
+            <div class="constraint-stage-head"><span>STEP 02</span><b data-i18n="regulation_fence">条款限制创新范围</b><small id="module-regulation-count">00</small></div>
+            <p data-i18n="regulation_fence_help">先锁定不可破坏的安全功能，再讨论结构变化。</p>
+            <div id="module-regulation-boundaries" class="module-boundary-list"></div>
+          </section>
+          <i>→</i>
+          <section class="constraint-stage patent-stage">
+            <div class="constraint-stage-head"><span>STEP 03</span><b data-i18n="patent_fence">现有专利排除已知路径</b><small id="module-patent-count">00</small></div>
+            <p data-i18n="patent_fence_help">高重合特征成为负约束，不直接拼进新方案。</p>
+            <div id="module-patent-boundaries" class="module-boundary-list"></div>
+          </section>
+        </div>
+        <div class="residual-innovation-picker">
+          <div class="residual-innovation-head">
+            <div><span>STEP 04</span><h4 data-i18n="rank_residual_innovations">列举并选择剩余创新点</h4></div>
+            <p><span data-i18n="rank_residual_help">已排除不符合条款或与现有专利高度重合的方向；请选择一个创新点与当前模块联合设计。</span><b id="module-residual-count">00</b></p>
+          </div>
+          <div id="residual-innovation-list" class="residual-innovation-list"></div>
+          <div id="residual-exclusion-note" class="residual-exclusion-note"></div>
+        </div>
+        <div class="inventor-console">
+          <div class="inventor-inputs">
+            <label><span data-i18n="problem_source">问题证据：选择要解决的实际问题</span><select id="inventor-problem"></select></label>
+            <label class="inventor-challenge"><span data-i18n="custom_challenge">补充联合设计限制（可选）</span><textarea id="inventor-challenge" rows="3" data-i18n-placeholder="challenge_placeholder" placeholder="例如：不能增加电机；戴手套也要操作；失电时必须可辨识……"></textarea></label>
+            <button id="generate-concepts" type="button"><span data-i18n="generate_concepts">联合设计并生成 3 种方案</span><b>↗</b></button>
+          </div>
+          <div class="inventor-reasoning">
+            <div><span>01</span><b data-i18n="reason_module">所选模块</b><p id="reason-module"></p></div>
+            <i>→</i>
+            <div><span>02</span><b data-i18n="reason_regulation">法规不变项</b><p id="reason-regulation"></p></div>
+            <i>→</i>
+            <div><span>03</span><b data-i18n="reason_exclude">专利排除项</b><p id="reason-patent"></p></div>
+            <i>→</i>
+            <div><span>04</span><b data-i18n="reason_mechanism">所选创新点</b><p id="reason-residual"></p></div>
+          </div>
+        </div>
+        <div class="concept-selector-head">
+          <div><span data-i18n="generated_directions">模块 × 创新点联合设计方案</span><b id="generated-count">03</b></div>
+          <p data-i18n="generated_help">三种方案采用不同的接口、冗余和失效架构；选择后查看完整第 2 章分析。</p>
+        </div>
+        <div id="generated-concepts" class="generated-concepts"></div>
+        <div id="concept-detail" class="concept-detail">
+          <div class="concept-detail-head">
+            <div><span id="concept-detail-code">CONCEPT 01</span><h3 id="concept-detail-title"></h3></div>
+            <button id="adopt-concept" type="button"><span data-i18n="adopt_concept">采用此方向，写入发明草案</span><b>→</b></button>
+          </div>
+          <nav class="chapter-map" aria-label="Chapter 2 structure">
+            <a href="#chapter-research"><b>2.1</b><span data-i18n="chapter_research">调研情况</span></a>
+            <a href="#chapter-innovation"><b>2.2</b><span data-i18n="chapter_innovation">创新点</span></a>
+            <a href="#chapter-effects"><b>2.3</b><span data-i18n="chapter_effects">技术效果</span></a>
+            <a href="#chapter-layout"><b>2.4</b><span data-i18n="chapter_layout">布局规划</span></a>
+            <a href="#chapter-market"><b>2.5</b><span data-i18n="chapter_market">市场因素</span></a>
+          </nav>
+
+          <section id="chapter-research" class="chapter-panel research-chapter">
+            <div class="chapter-panel-head">
+              <div><b>2.1</b><span><small>RESEARCH BASIS</small><h4 data-i18n="research_situation">调研情况与问题来源</h4></span></div>
+              <em data-i18n="research_verified">证据与推断分开显示</em>
+            </div>
+            <div class="research-grid">
+              <article class="problem-source-card">
+                <span data-i18n="problem_evidence">问题证据</span>
+                <h5 id="research-problem-title"></h5>
+                <p id="research-problem-copy"></p>
+                <div><b id="research-source-org"></b><a id="research-source-link" href="#" target="_blank" rel="noreferrer"><span data-i18n="open_problem_source">打开问题来源</span> ↗</a></div>
+              </article>
+              <div class="patent-benchmark">
+                <div class="subsection-title"><span data-i18n="patent_comparison">与现有专利对比</span><small data-i18n="patent_comparison_help">不是侵权判断，用于发现已知路径和设计缺口</small></div>
+                <div id="research-patent-table" class="research-patent-table"></div>
+              </div>
+            </div>
+            <div class="research-conclusion"><span data-i18n="research_conclusion">调研结论 / 尚未解决的缺口</span><p id="research-gap"></p></div>
+          </section>
+
+          <section id="chapter-innovation" class="chapter-panel innovation-chapter">
+            <div class="chapter-panel-head">
+              <div><b>2.2</b><span><small>INVENTION LOGIC</small><h4 data-i18n="innovation_points">创新点与技术架构</h4></span></div>
+              <em data-i18n="innovation_three_layers">区分新技术、新架构和旧技术新用途</em>
+            </div>
+            <div class="embodiment-spotlight">
+              <div class="embodiment-copy">
+                <span data-i18n="concrete_embodiment">具体实施构想</span>
+                <h5 id="embodiment-name"></h5>
+                <p id="embodiment-summary"></p>
+              </div>
+              <div class="embodiment-schematic" aria-label="Concept element relationship">
+                <div><span>A</span><b id="embodiment-part-a"></b></div><i>→</i>
+                <div><span>B</span><b id="embodiment-part-b"></b></div><i>→</i>
+                <div><span>C</span><b id="embodiment-part-c"></b></div><i>→</i>
+                <div><span>D</span><b id="embodiment-part-d"></b></div>
+              </div>
+            </div>
+            <figure class="concept-patent-figure">
+              <div class="concept-figure-head"><span>FIG. 02 / CONCEPT ARCHITECTURE</span><b id="concept-figure-module"></b></div>
+              <div id="concept-figure-canvas" class="concept-figure-canvas"></div>
+              <figcaption id="concept-figure-caption"></figcaption>
+            </figure>
+            <div class="embodiment-detail">
+              <div>
+                <div class="subsection-title"><span data-i18n="prototype_parts">样机构件清单</span><small data-i18n="prototype_parts_help">编号可直接用于结构草图</small></div>
+                <ol id="embodiment-parts"></ol>
+              </div>
+              <div>
+                <div class="subsection-title"><span data-i18n="action_sequence">完整动作序列</span><small data-i18n="action_sequence_help">说明何时动作、怎样动作、如何复位</small></div>
+                <ol id="embodiment-sequence"></ol>
+              </div>
+            </div>
+            <div class="innovation-delta-strip">
+              <div><span data-i18n="existing_path">现有常见路径</span><p id="embodiment-baseline"></p></div>
+              <i>≠</i>
+              <div><span data-i18n="specific_difference">本构想的具体差异</span><p id="embodiment-delta"></p></div>
+              <div class="claim-hook"><span data-i18n="claim_hook">独立权利要求抓手</span><p id="embodiment-claim-hook"></p></div>
+            </div>
+            <div class="innovation-layers">
+              <article><span>01 · <i data-i18n="innovation_new_tech">新技术</i></span><h5 data-i18n="innovation_new_tech_title">新的工作原理</h5><p id="concept-principle"></p></article>
+              <article><span>02 · <i data-i18n="innovation_new_arch">新架构</i></span><h5 data-i18n="innovation_new_arch_title">新的构件关系</h5><p id="concept-mechanism"></p></article>
+              <article><span>03 · <i data-i18n="innovation_reuse">旧技术用于新架构</i></span><h5 data-i18n="innovation_reuse_title">成熟构件的新角色</h5><p id="innovation-reuse-copy"></p></article>
+            </div>
+            <div class="innovation-core">
+              <div><span data-i18n="core_innovation">核心创新点（一句话）</span><p id="innovation-core-copy"></p></div>
+              <div><span data-i18n="not_combination">为什么不只是组合</span><p id="concept-why"></p></div>
+            </div>
+            <div class="innovation-breakdown">
+              <div class="subsection-title">
+                <span data-i18n="innovation_breakdown">创新点详细拆解</span>
+                <small data-i18n="innovation_breakdown_help">把概念拆成可画图、可做样机、可写权利要求的技术要素</small>
+              </div>
+              <div class="innovation-detail-grid">
+                <article><span>01</span><div><h5 data-i18n="innovation_conflict">要解决的技术矛盾</h5><p id="innovation-conflict-copy"></p></div></article>
+                <article><span>02</span><div><h5 data-i18n="innovation_elements">关键构件</h5><p id="innovation-elements-copy"></p></div></article>
+                <article><span>03</span><div><h5 data-i18n="innovation_relationship">构件关系</h5><p id="innovation-relationship-copy"></p></div></article>
+                <article><span>04</span><div><h5 data-i18n="innovation_logic">控制 / 动作逻辑</h5><p id="innovation-logic-copy"></p></div></article>
+                <article><span>05</span><div><h5 data-i18n="innovation_failure">失效与人工超控</h5><p id="innovation-failure-copy"></p></div></article>
+                <article><span>06</span><div><h5 data-i18n="innovation_protection">申请时重点限定</h5><p id="innovation-protection-copy"></p></div></article>
+              </div>
+            </div>
+          </section>
+
+          <section id="chapter-effects" class="chapter-panel effects-chapter">
+            <div class="chapter-panel-head">
+              <div><b>2.3</b><span><small>TECHNICAL EFFECT</small><h4 data-i18n="technical_effects">技术效果与验证方法</h4></span></div>
+              <em data-i18n="effects_pending">效果为待验证假设，不写成既成事实</em>
+            </div>
+            <div class="effect-chain">
+              <div><span>STRUCTURE</span><b data-i18n="effect_structure">结构变化</b><p id="effect-structure"></p></div><i>→</i>
+              <div><span>ACTION</span><b data-i18n="effect_action">作用机制</b><p id="effect-action"></p></div><i>→</i>
+              <div><span>RESULT</span><b data-i18n="effect_direct">直接效果</b><p id="effect-direct"></p></div><i>→</i>
+              <div><span>METRIC</span><b data-i18n="effect_metric">可测指标</b><p id="effect-metric"></p></div>
+            </div>
+            <div class="effect-validation">
+              <span data-i18n="validation_plan">需要证明的技术效果</span>
+              <ul id="concept-validation"></ul>
+            </div>
+          </section>
+
+          <section id="chapter-layout" class="chapter-panel layout-chapter">
+            <div class="chapter-panel-head">
+              <div><b>2.4</b><span><small>LAYOUT PLAN</small><h4 data-i18n="layout_planning">布局规划</h4></span></div>
+              <em data-i18n="layout_concept_note">概念分区，不是制造尺寸图</em>
+            </div>
+            <div class="layout-planning-grid">
+              <div class="layout-blueprint" aria-label="Conceptual throttle layout">
+                <div class="blueprint-label">TOP / PLAN VIEW</div>
+                <div class="layout-base"></div>
+                <div class="layout-zone layout-zone-primary"><span>01</span><b id="layout-primary"></b></div>
+                <div class="layout-zone layout-zone-state"><span>02</span><b id="layout-state"></b></div>
+                <div class="layout-zone layout-zone-safety"><span>03</span><b id="layout-safety"></b></div>
+                <div class="layout-zone layout-zone-service"><span>04</span><b id="layout-service"></b></div>
+              </div>
+              <div class="layout-rules">
+                <div class="subsection-title"><span data-i18n="layout_rules">布局决策</span><small data-i18n="layout_rules_help">按操作、识别、安全和维护四条线规划</small></div>
+                <ol id="layout-rules"></ol>
+              </div>
+            </div>
+          </section>
+
+          <section id="chapter-market" class="chapter-panel market-chapter">
+            <div class="chapter-panel-head">
+              <div><b>2.5</b><span><small>MARKET FACTORS</small><h4 data-i18n="market_factors">市场因素与落地路径</h4></span></div>
+              <em data-i18n="market_no_forecast">定性筛选，不构成市场规模预测</em>
+            </div>
+            <div class="market-grid">
+              <div class="market-brief">
+                <dl>
+                  <div><dt data-i18n="market_target">目标应用</dt><dd id="market-target"></dd></div>
+                  <div><dt data-i18n="market_customer">潜在客户</dt><dd id="market-customer"></dd></div>
+                  <div><dt data-i18n="market_entry">建议切入路径</dt><dd id="market-entry"></dd></div>
+                  <div><dt data-i18n="market_barrier">主要商业化障碍</dt><dd id="market-barrier"></dd></div>
+                </dl>
+              </div>
+              <div class="concept-scores market-scores">
+                <span data-i18n="market_screening">方案筛选指标</span>
+                <dl>
+                  <div><dt data-i18n="score_pilot">飞行员价值</dt><dd><i id="score-pilot"></i><b id="score-pilot-value"></b></dd></div>
+                  <div><dt data-i18n="score_novelty">差异机会</dt><dd><i id="score-novelty"></i><b id="score-novelty-value"></b></dd></div>
+                  <div><dt data-i18n="score_cert">法规适配</dt><dd><i id="score-cert"></i><b id="score-cert-value"></b></dd></div>
+                  <div><dt data-i18n="score_proto">原型可行性</dt><dd><i id="score-proto"></i><b id="score-proto-value"></b></dd></div>
+                  <div><dt data-i18n="score_market">市场价值</dt><dd><i id="score-market"></i><b id="score-market-value"></b></dd></div>
+                </dl>
+              </div>
+            </div>
+          </section>
+
+          <div class="claim-validation-grid">
+            <div><span data-i18n="claim_skeleton">权利要求骨架（交代理师深化）</span><ol id="concept-claims"></ol></div>
+            <div class="claim-boundary"><span data-i18n="patent_negative_constraints">需要继续检索的专利边界</span><div id="claim-negative-constraints"></div></div>
+          </div>
+        </div>
+      </div>
+      <div class="evidence-analysis">
+        <section class="patent-analysis" aria-labelledby="patent-analysis-title">
+          <div class="analysis-head">
+            <div><span>02</span><h3 id="patent-analysis-title" data-i18n="patent_analysis">专利重合雷达</h3></div>
+            <b><i id="patent-count">08</i> <span data-i18n="patent_documents">件专利文献</span></b>
+          </div>
+          <p class="analysis-intro" data-i18n="patent_intro">按当前问题与候选方案的技术特征匹配公开权利要求摘要。高重合不是侵权结论，但意味着申请前必须形成可验证的结构、控制原理或技术效果差异。</p>
+          <div id="patent-matches" class="patent-matches"></div>
+        </section>
+        <section class="need-analysis" aria-labelledby="need-analysis-title">
+          <div class="analysis-head">
+            <div><span>03</span><h3 id="need-analysis-title" data-i18n="need_analysis">飞行员痛点优先级</h3></div>
+            <b><i id="need-count">06</i> <span data-i18n="verified_needs">条核验证据</span></b>
+          </div>
+          <p class="analysis-intro" data-i18n="need_intro">来自 NASA ASRS 飞行员报告与 AAIB 调查。优先级结合严重度、证据数量和当前设计目标，不把论坛意见当成事实。</p>
+          <div id="need-priorities" class="need-priorities"></div>
+        </section>
+      </div>
+      <div class="invention-brief">
+        <div class="brief-title">
+          <div><span>04</span><h3 data-i18n="invention_brief">发明问题定义</h3></div>
+          <button id="copy-brief" type="button"><span data-i18n="copy_brief">复制草案</span><b>⧉</b></button>
+        </div>
+        <div class="brief-grid">
+          <div><span data-i18n="brief_problem">待解决问题</span><p id="brief-problem"></p></div>
+          <div><span data-i18n="brief_mechanism">拟采用机制</span><p id="brief-mechanism"></p></div>
+          <div><span data-i18n="brief_difference">需要证明的差异</span><p id="brief-difference"></p></div>
+          <div><span data-i18n="brief_evidence">建议验证证据</span><p id="brief-evidence"></p></div>
+        </div>
+        <p class="legal-note"><b>LEGAL NOTE</b><span data-i18n="patent_legal_note">本工具用于检索与发明构思，不构成新颖性、创造性、自由实施或可专利性法律意见。正式申请前应由专利代理师检索完整权利要求、同族、引证和法律状态。</span></p>
+      </div>
+    </section>
+
+    <section class="intro-block section" aria-labelledby="intro-title">
+      <div class="section-heading">
+        <div><span class="section-no">A / 01</span><p data-i18n="primer">PRIMER · 基础</p></div>
+        <div>
+          <h2 id="intro-title" data-i18n="intro_title">油门台，不只是“加减速”。</h2>
+          <p data-i18n="intro_copy">它连接飞行员意图、发动机控制、自动飞行和任务系统。民航重视程序、可见性与防误操作；军机则将大量任务功能压缩到双手可及范围。</p>
+        </div>
+      </div>
+      <div class="concept-grid">
+        <article>
+          <b>01</b><span class="concept-icon civil">↥</span>
+          <h3 data-i18n="concept_civil">民航中央油门台</h3>
+          <p data-i18n="concept_civil_copy">推力、反推、自动油门断开、TO/GA 与明确卡位；方便双人机组观察和交叉检查。</p>
+        </article>
+        <article>
+          <b>02</b><span class="concept-icon military">⌁</span>
+          <h3 data-i18n="concept_hot">军用 HOTAS</h3>
+          <p data-i18n="concept_hot_copy">Hands On Throttle And Stick：把通信、传感器、武器和防御输入留在双手之下。</p>
+        </article>
+        <article>
+          <b>03</b><span class="concept-icon auto">◎</span>
+          <h3 data-i18n="concept_auto">自动推力逻辑</h3>
+          <p data-i18n="concept_auto_copy">有些手柄会随自动系统移动，有些保持在卡位。外观相似，反馈哲学却完全不同。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="photo-section section" aria-labelledby="photo-title">
+      <div class="compact-heading">
+        <div><span class="section-no">A / 02</span><h2 id="photo-title" data-i18n="photo_title">公开影像档案</h2></div>
+        <p data-i18n="photo_copy">实物照片用于认识布局；点击来源可核验作者、时间与许可。</p>
+      </div>
+      <div class="photo-rail">
+        <a class="photo-card large" href="https://commons.wikimedia.org/wiki/File:Thrust_levers_of_an_Airbus_A320.jpg" target="_blank" rel="noreferrer">
+          <img src="/images/a320-thrust.jpg" alt="Airbus A320 thrust levers">
+          <span class="photo-index">01 / 05</span>
+          <div><small>AIRBUS A320</small><strong data-i18n="photo_a320">推力手柄与中央操纵台</strong><em>Olivier Cleynen · CC BY-SA 3.0 ↗</em></div>
+        </a>
+        <a class="photo-card" href="https://commons.wikimedia.org/wiki/File:Boeing_737_cockpit.jpg" target="_blank" rel="noreferrer">
+          <img src="/images/boeing-737.jpg" alt="Boeing 737 cockpit">
+          <span class="photo-index">02 / 05</span>
+          <div><small>BOEING 737</small><strong data-i18n="photo_boeing">经典中央油门台布局</strong><em>Milkmandan · CC BY-SA 3.0 ↗</em></div>
+        </a>
+        <a class="photo-card" href="https://commons.wikimedia.org/wiki/File:F-16_Cockpit_part.JPG" target="_blank" rel="noreferrer">
+          <img src="/images/f16-cockpit.jpg" alt="F-16 cockpit detail">
+          <span class="photo-index">03 / 05</span>
+          <div><small>F-16</small><strong data-i18n="photo_f16">侧置操纵与 HOTAS 环境</strong><em>Alf van Beem · CC0 1.0 ↗</em></div>
+        </a>
+        <a class="photo-card" href="https://commons.wikimedia.org/wiki/File:Eurofighter_Cockpit.jpg" target="_blank" rel="noreferrer">
+          <img src="/images/typhoon-cockpit.jpg" alt="Eurofighter Typhoon cockpit">
+          <span class="photo-index">04 / 05</span>
+          <div><small>EUROFIGHTER</small><strong data-i18n="photo_typhoon">台风座舱与 VTAS</strong><em>tribp · CC BY 2.0 ↗</em></div>
+        </a>
+        <a class="photo-card" href="https://commons.wikimedia.org/wiki/File:Sukhoi_Su-35S_07_RED_PAS_2013_08_Cockpit.jpg" target="_blank" rel="noreferrer">
+          <img src="/images/su35-cockpit.jpg" alt="Sukhoi Su-35S cockpit">
+          <span class="photo-index">05 / 05</span>
+          <div><small>SUKHOI SU-35S</small><strong data-i18n="photo_su35">双发战斗机驾驶舱</strong><em>Julian Herzog · CC BY 4.0 ↗</em></div>
+        </a>
+      </div>
+    </section>
+
+    <section id="library" class="library-section section" aria-labelledby="library-title">
+      <div class="section-heading">
+        <div><span class="section-no">B / 01</span><p>MODEL LIBRARY</p></div>
+        <div>
+          <h2 id="library-title" data-i18n="library_title">选择你的研究对象。</h2>
+          <p data-i18n="library_copy">覆盖空客、波音、商飞、美国 F 系列、欧洲系列与俄罗斯苏系列。证据不足的细节会明确标注，不以推测补空白。</p>
+        </div>
+      </div>
+      <div class="filter-row">
+        <div class="segmented" role="group" aria-label="Model category">
+          <button class="active" type="button" data-filter="all" data-i18n="all_models">全部</button>
+          <button type="button" data-filter="commercial" data-i18n="commercial">商用</button>
+          <button type="button" data-filter="military" data-i18n="military">军用</button>
+        </div>
+        <div class="legend"><span class="high"></span><i data-i18n="evidence_high">高可信</i><span class="limited"></span><i data-i18n="evidence_limited">公开细节有限</i></div>
+      </div>
+      <div id="model-grid" class="model-grid" aria-live="polite"></div>
+    </section>
+
+    <section id="visual" class="visual-section section" aria-labelledby="visual-title">
+      <div class="section-heading inverse">
+        <div><span class="section-no">C / 01</span><p>3D COMPARATOR</p></div>
+        <div>
+          <h2 id="visual-title" data-i18n="visual_title">放在同一空间里看。</h2>
+          <p data-i18n="visual_copy">选择任意两个型号，拖动旋转、滚轮缩放；并列看结构，叠加看体量与手柄布局差异。</p>
+        </div>
+      </div>
+      <div class="compare-selectors">
+        <label><span>A · <b data-i18n="model_a">模型 A</b></span><select id="model-a" aria-label="Model A"></select></label>
+        <button id="swap-models" type="button" aria-label="Swap models">⇄</button>
+        <label><span>B · <b data-i18n="model_b">模型 B</b></span><select id="model-b" aria-label="Model B"></select></label>
+      </div>
+      <div class="canvas-shell">
+        <div class="canvas-toolbar">
+          <div class="view-toggle">
+            <button class="active" type="button" data-view="split" data-i18n="side_view">并列</button>
+            <button type="button" data-view="overlay" data-i18n="overlay_view">叠加</button>
+          </div>
+          <div>
+            <button id="auto-rotate" class="tool-button active" type="button"><span>↻</span><i data-i18n="auto_rotate">自动旋转</i></button>
+            <button id="reset-view" class="tool-button" type="button"><span>⌖</span><i data-i18n="reset_view">重置视角</i></button>
+          </div>
+        </div>
+        <canvas id="compare-canvas" aria-label="Interactive 3D throttle comparison"></canvas>
+        <div class="canvas-label label-a"><b>A</b><span id="canvas-name-a">A320</span></div>
+        <div class="canvas-label label-b"><b>B</b><span id="canvas-name-b">F-16C</span></div>
+        <div class="canvas-help"><span>↔</span><i data-i18n="drag_help">拖动旋转 · 滚轮缩放</i></div>
+        <div class="axis-key"><span class="x">X</span><span class="y">Y</span><span class="z">Z</span></div>
+      </div>
+      <div class="disclaimer">
+        <b>i</b><p><strong data-i18n="model_disclaimer_title">示意模型，不是原厂 CAD。</strong><span data-i18n="model_disclaimer">三维形态依据公开照片与高层功能特征参数化生成，仅比较基座、手柄数量、分体方式和控制密度；不得用于制造、维修或适航。</span></p>
+      </div>
+    </section>
+
+    <section id="function" class="function-section section" aria-labelledby="function-title">
+      <div class="compact-heading">
+        <div><span class="section-no">D / 01</span><h2 id="function-title" data-i18n="function_title">功能差异，逐项对齐。</h2></div>
+        <p data-i18n="function_copy">同一字段、同一尺度；差异项自动高亮。</p>
+      </div>
+      <div class="function-controls">
+        <label>A<select id="function-a"></select></label>
+        <span>VS</span>
+        <label>B<select id="function-b"></select></label>
+      </div>
+      <div class="comparison-table" role="table" aria-label="Function comparison">
+        <div class="comparison-head" role="row">
+          <div role="columnheader" data-i18n="dimension">对比维度</div>
+          <div role="columnheader"><span class="chip a">A</span><b id="function-name-a"></b></div>
+          <div role="columnheader"><span class="chip b">B</span><b id="function-name-b"></b></div>
+        </div>
+        <div id="comparison-rows"></div>
+      </div>
+    </section>
+
+    <section id="regulations" class="regulation-section section" aria-labelledby="regulation-title">
+      <div class="section-heading inverse">
+        <div><span class="section-no">E / 01</span><p>AIRWORTHINESS LIMITS</p></div>
+        <div>
+          <h2 id="regulation-title" data-i18n="regulation_title">选一个组件，看三方限制。</h2>
+          <p data-i18n="regulation_copy">选择正推力杆、反推力杆等组件，逐栏查看 FAA、EASA、CAAC 的条款、强制性要求与工程含义。法规原文和工程解读明确分开。</p>
+        </div>
+      </div>
+      <div class="regulation-scope">
+        <div>
+          <span>FAA · 14 CFR PART 25</span>
+          <span>EASA · CS-25</span>
+          <span>CAAC · CCAR-25-R4</span>
+        </div>
+        <p><b>i</b><span data-i18n="regulation_scope">当前范围：运输类 / 大型飞机。具体型号的审定基础、修订版、专用条件和符合性方法可能不同；本模块不是适航批准结论。</span></p>
+      </div>
+      <div class="component-browser">
+        <div>
+          <div class="component-label"><span data-i18n="choose_component">选择组件</span><b id="component-count">06</b></div>
+          <div id="component-list" class="component-list" aria-label="Throttle components"></div>
+        </div>
+        <div class="regulation-output">
+          <div class="selected-component">
+            <span id="selected-component-icon">↗</span>
+            <div><small data-i18n="selected_component">当前组件</small><h3 id="selected-component-name">正推力杆</h3><p id="selected-component-description"></p></div>
+            <b id="constraint-count">03</b>
+          </div>
+          <div class="baseline-strip">
+            <span data-i18n="common_baseline">共同设计基线</span>
+            <p id="baseline-copy" data-i18n="baseline_copy">防误动、操作方向明确、控制响应及时，并通过布局和门锁降低机组差错。</p>
+          </div>
+          <div id="regulation-results" class="regulation-results" aria-live="polite">
+            <div class="regulation-loading">LOADING · 正在载入法规条款</div>
+          </div>
+        </div>
+      </div>
+      <div class="regulation-legend">
+        <span><i class="requirement-key"></i><b data-i18n="legal_requirement">法规 / 规范要求</b></span>
+        <span><i class="interpretation-key"></i><b data-i18n="engineering_reading">工程解读</b></span>
+        <p data-i18n="regulation_note">条款摘要为便于设计检索的双语转述；做符合性工作时，请打开官方来源核对完整条文与适用修订版。</p>
+      </div>
+    </section>
+
+    <section id="knowledge" class="knowledge-section section" aria-labelledby="knowledge-title">
+      <div class="knowledge-top">
+        <div>
+          <div class="eyebrow"><span>07</span><i></i><span>LOCAL RAG FOUNDATION</span></div>
+          <h2 id="knowledge-title" data-i18n="knowledge_title">每个结论，都能回到出处。</h2>
+          <p data-i18n="knowledge_copy">公开网页与 PDF 已按原始来源下载到本机，提取正文、切片并写入 SQLite。检索同时覆盖人工整理知识与本地原文，且保留 URL、下载时间、哈希和引用键。</p>
+        </div>
+        <div class="rag-map">
+          <span><b>01</b><i data-i18n="rag_sources">来源</i></span><em>→</em>
+          <span><b>02</b><i data-i18n="rag_chunks">切片</i></span><em>→</em>
+          <span><b>03</b><i data-i18n="rag_retrieve">检索</i></span><em>→</em>
+          <span><b>04</b><i data-i18n="rag_cite">引用</i></span>
+        </div>
+      </div>
+      <form id="search-form" class="search-box" role="search">
+        <span>⌕</span>
+        <input id="knowledge-query" type="search" autocomplete="off" data-i18n-placeholder="search_placeholder" placeholder="搜索：A320 自动推力为什么不带动手柄？">
+        <button type="submit"><span data-i18n="search">检索</span><b>↵</b></button>
+      </form>
+      <div class="quick-queries">
+        <span data-i18n="try_queries">试试：</span>
+        <button type="button" data-query-zh="A320 自动推力" data-query-en="A320 autothrust">A320 AUTOTHRUST</button>
+        <button type="button" data-query-zh="HOTAS 有什么作用" data-query-en="What does HOTAS do">HOTAS</button>
+        <button type="button" data-query-zh="民航与军用油门差异" data-query-en="Civil versus combat throttles" data-i18n="query_difference">民航 vs 军用</button>
+        <button type="button" data-query-zh="公开资料边界" data-query-en="Public information boundary" data-i18n="query_boundary">证据边界</button>
+        <button type="button" data-query-zh="EASA 反推力杆限制" data-query-en="EASA reverse-thrust lever constraints" data-i18n="query_regulation">反推法规</button>
+      </div>
+      <div class="search-layout">
+        <div>
+          <div class="result-heading"><span data-i18n="search_results">检索结果</span><b id="result-count">0</b></div>
+          <div id="search-results" class="search-results" aria-live="polite"></div>
+        </div>
+        <aside class="db-panel">
+          <div class="db-panel-head"><span data-i18n="db_status">数据库状态</span><b id="archive-state">尚未同步</b></div>
+          <div class="db-gauge"><strong id="db-source-count">17</strong><span data-i18n="verified_sources">条已核验来源</span><i style="--p:88%"></i></div>
+          <div class="archive-status-grid">
+            <div><span data-i18n="archive_sources">本地来源</span><strong id="archive-source-count">0 / 0</strong></div>
+            <div><span data-i18n="archive_chunks">原文切片</span><strong id="archive-chunk-count">0</strong></div>
+            <div><span data-i18n="archive_size">归档大小</span><strong id="archive-size">0 B</strong></div>
+            <div><span data-i18n="archive_sync">最近同步</span><strong id="archive-sync-time">尚未同步</strong></div>
+          </div>
+          <dl>
+            <div><dt data-i18n="db_engine">引擎</dt><dd>SQLite 3</dd></div>
+            <div><dt data-i18n="db_mode">检索</dt><dd>CURATED + LOCAL</dd></div>
+            <div><dt data-i18n="db_language">语言</dt><dd>ZH + EN</dd></div>
+            <div><dt data-i18n="db_citation">引用键</dt><dd>source_id</dd></div>
+          </dl>
+          <button id="show-sources" type="button"><span data-i18n="view_all_sources">查看全部来源</span><b>→</b></button>
+        </aside>
+      </div>
+      <div id="source-drawer" class="source-drawer" hidden>
+        <div><h3 data-i18n="source_register">来源登记册</h3><button id="close-sources" type="button" aria-label="Close">×</button></div>
+        <div id="source-list"></div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="brand footer-brand"><span class="brand-mark"><i></i><i></i><i></i></span><span><strong>THROTTLE</strong><small>ATLAS / 油门台图谱</small></span></div>
+      <p data-i18n="footer_note">公开资料教育与研究用途 · 不用于实际飞行、维修、适航或制造</p>
+      <span>LOCAL BUILD · V1.0</span>
+    </footer>
+  </main>
+  <script src="/app.js"></script>
+</body>
+</html>

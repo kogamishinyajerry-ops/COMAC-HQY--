@@ -1,0 +1,189 @@
+schema_version: 1
+ontology_type: throttle_component
+default_source_id: hqy-curated-ontology
+disclaimer_zh: 项目内部工程本体，用于统一术语和跨源关联，不替代型号设计定义。
+disclaimer_en: Project-curated engineering ontology for retrieval and linking; not an OEM design definition.
+entities:
+  - id: component:throttle-quadrant
+    label_zh: 油门台
+    label_en: Throttle Quadrant
+    aliases: [推力台, 推力控制台, throttle stand, power quadrant, thrust control stand]
+    scope_level: core
+    keyword_groups:
+      - [throttle quadrant, throttle stand, power quadrant, 油门台, 推力台]
+  - id: component:forward-lever
+    label_zh: 正推力杆
+    label_en: Forward Thrust Lever
+    aliases: [推力手柄, 油门杆, thrust lever, throttle lever, power lever]
+    parent_id: component:throttle-quadrant
+    component_id: forward_lever
+    scope_level: core
+    keyword_groups:
+      - [thrust lever, throttle lever, power lever, 推力手柄, 油门杆]
+      - [forward thrust, increase thrust, 正推力, 增加推力]
+  - id: component:reverse-lever
+    label_zh: 反推力杆
+    label_en: Reverse Thrust Lever
+    aliases: [反推杆, 反推手柄, reverse lever, reverse thrust control]
+    parent_id: component:throttle-quadrant
+    component_id: reverse_lever
+    scope_level: core
+    keyword_groups:
+      - [reverse thrust, thrust reverser, reverse lever, 反推, 反推力]
+      - [interlock, lockout, inhibit, 互锁, 防误动]
+  - id: component:detent
+    label_zh: 卡位
+    label_en: Detent
+    aliases: [机械卡位, 止动位, 卡槽, gate, stop, mechanical detent]
+    parent_id: component:forward-lever
+    scope_level: core
+    keyword_groups:
+      - [detent, gate, stop, 卡位, 止动]
+  - id: component:flight-idle-gate
+    label_zh: 飞行慢车门锁
+    label_en: Flight Idle Gate
+    aliases: [慢车门锁, idle gate, flight idle stop, positive lock]
+    parent_id: component:detent
+    component_id: flight_idle_gate
+    scope_level: core
+    keyword_groups:
+      - [flight idle, idle gate, idle stop, 飞行慢车, 慢车门锁]
+      - [positive lock, distinct action, separate action, 确实锁止, 明显动作]
+  - id: component:engine-grouping
+    label_zh: 多发分控与联控
+    label_en: Multi-engine Grouping
+    aliases: [多发联动, 分体油门, split throttle, simultaneous engine control]
+    parent_id: component:throttle-quadrant
+    component_id: engine_grouping
+    scope_level: core
+    keyword_groups:
+      - [multiple engines, multi-engine, simultaneous control, 多台发动机, 多发联控]
+      - [independent control, split throttle, 分别控制, 分体油门]
+  - id: component:fuel-cutoff
+    label_zh: 燃油切断联锁
+    label_en: Fuel Cutoff Interlock
+    aliases: [断油杆, fuel shutoff, cutoff lever, high pressure cock]
+    parent_id: component:throttle-quadrant
+    component_id: fuel_cutoff
+    scope_level: core
+    keyword_groups:
+      - [fuel cutoff, fuel shutoff, cutoff lever, 断油, 燃油切断]
+      - [interlock, distinct action, lockout, 互锁, 防误操作]
+  - id: component:retention-layout
+    label_zh: 保持与布局机构
+    label_en: Retention and Layout
+    aliases: [摩擦锁, 保持机构, friction lock, retention mechanism, control layout]
+    parent_id: component:throttle-quadrant
+    component_id: retention_layout
+    scope_level: core
+    keyword_groups:
+      - [friction lock, retention, creep, 摩擦锁, 防滑移]
+      - [control layout, full travel, clearance, 操纵布局, 全行程]
+  - id: component:toga-switch
+    label_zh: TO/GA 按钮
+    label_en: TO/GA Switch
+    aliases: [起飞复飞按钮, 复飞按钮, TOGA switch, go-around switch]
+    parent_id: component:forward-lever
+    scope_level: core
+    keyword_groups:
+      - [to/ga, toga, takeoff go-around, go-around switch, 起飞复飞, 复飞按钮]
+  - id: component:autothrottle
+    label_zh: 自动油门
+    label_en: Autothrottle
+    aliases: [自动推力, A/T, ATHR, autothrust, automatic throttle]
+    parent_id: component:throttle-quadrant
+    scope_level: core
+    keyword_groups:
+      - [autothrottle, autothrust, automatic throttle, 自动油门, 自动推力]
+      - [engage, disengage, disconnect, mode, 接通, 断开, 模式]
+  - id: component:position-sensor
+    label_zh: 推力手柄位置传感器
+    label_en: Throttle Position Sensor
+    aliases: [油门解算器, throttle resolver, throttle lever angle, TLA, RVDT, LVDT]
+    parent_id: component:forward-lever
+    scope_level: core
+    keyword_groups:
+      - [throttle position sensor, throttle resolver, lever angle, RVDT, LVDT, 位置传感器, 油门解算器]
+  - id: component:fadec
+    label_zh: 全权限数字发动机控制
+    label_en: FADEC (Full Authority Digital Engine Control)
+    aliases: [FADEC, full authority digital engine control, 全权限数字发动机控制器, 全权数字控制]
+    parent_id: component:throttle-quadrant
+    component_id: fadec
+    scope_level: core
+    keyword_groups:
+      - [fadec, full authority digital, full-authority digital, 全权限数字, 全权数字]
+      - [electronic engine controller, electronic engine control, 电子发动机控制器, 电子发动机控制]
+  - id: component:eec
+    label_zh: 电子发动机控制
+    label_en: EEC (Electronic Engine Control)
+    aliases: [EEC, electronic engine control, 电子发动机控制器, EEC controller]
+    parent_id: component:fadec
+    component_id: eec
+    scope_level: core
+    keyword_groups:
+      - [eec, electronic engine control, electronic engine controller, 电子发动机控制, 电子发动机控制器]
+      - [eec channel, eec channel a, eec channel b, dual eec, 主电子控制器, 电子控制通道]
+  - id: component:engine-control-channel
+    label_zh: 控制通道冗余
+    label_en: Engine Control Channel Redundancy
+    aliases: [控制通道, 双通道, 备份通道, dual channel, redundant channel, redundant control]
+    parent_id: component:fadec
+    component_id: engine_control_channel
+    scope_level: core
+    keyword_groups:
+      - [dual channel, redundant channel, channel a, channel b, 双通道, 备份通道, 主备通道]
+      - [fault tolerant, redundancy, 容错, 冗余]
+  - id: component:overspeed-protection
+    label_zh: 发动机超转保护
+    label_en: Overspeed Protection
+    aliases: [超转保护, N1 超转, N2 超转, N1 limit, N2 limit, overspeed governor]
+    parent_id: component:fadec
+    component_id: overspeed_protection
+    scope_level: core
+    keyword_groups:
+      - [overspeed, overspeed protection, n1 limit, n2 limit, 超转, 超转保护, 转速限制]
+      - [redline, maximum rpm, governor, 最高转速, 调速器]
+  - id: component:thrust-control-law
+    label_zh: 推力控制律
+    label_en: Thrust Control Law
+    aliases: [推力调度, 控制律, 控制律调度, thrust scheduling, control law, control schedule]
+    parent_id: component:fadec
+    component_id: thrust_control_law
+    scope_level: core
+    keyword_groups:
+      - [thrust scheduling, control law, control schedule, thrust control law, 推力调度, 控制律, 控制律调度]
+      - [flight envelope, envelope protection, max thrust limit, 飞行包线, 包线保护, 最大推力限制]
+relations:
+  - subject_id: component:reverse-lever
+    predicate: constrained_by
+    object_id: component:flight-idle-gate
+    evidence_basis: curated
+  - subject_id: component:autothrottle
+    predicate: commands
+    object_id: component:forward-lever
+    evidence_basis: curated
+  - subject_id: component:fadec
+    predicate: receives_command_from
+    object_id: component:forward-lever
+    evidence_basis: curated
+  - subject_id: component:fadec
+    predicate: status_feedback_to
+    object_id: component:forward-lever
+    evidence_basis: curated
+  - subject_id: component:eec
+    predicate: duplicates
+    object_id: component:fadec
+    evidence_basis: curated_legacy_mapping
+  - subject_id: component:engine-control-channel
+    predicate: implements
+    object_id: component:fadec
+    evidence_basis: curated
+  - subject_id: component:overspeed-protection
+    predicate: protects
+    object_id: component:fadec
+    evidence_basis: curated
+  - subject_id: component:thrust-control-law
+    predicate: executed_by
+    object_id: component:fadec
+    evidence_basis: curated
