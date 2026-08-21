@@ -290,18 +290,19 @@ def cmd_curate(args: argparse.Namespace) -> int:
 
 def cmd_ontology(args: argparse.Namespace) -> int:
     """加载并打印本体 yaml。"""
-    bundle = load_bundle()
+    bundle = load_bundle()  # list[(Path, dict)]
     summary = {
-        "ontology_files": [str(p.relative_to(ROOT)) for p in ONTOLOGY_FILES],
-        "counts": {k: len(v) for k, v in bundle.items()},
+        "ontology_files": [name for name in ONTOLOGY_FILES],
+        "counts": {path.name: len(data["entities"]) for path, data in bundle},
     }
     print(json.dumps(summary, ensure_ascii=False, indent=2))
     if args.verbose:
-        for k, v in bundle.items():
-            print(f"\n--- {k} ({len(v)} 条) ---")
-            print(json.dumps(v[:3], ensure_ascii=False, indent=2))
-            if len(v) > 3:
-                print(f"  ... 还有 {len(v) - 3} 条")
+        for path, data in bundle:
+            ents = data["entities"]
+            print(f"\n--- {path.name} ({len(ents)} 条) ---")
+            print(json.dumps(ents[:3], ensure_ascii=False, indent=2))
+            if len(ents) > 3:
+                print(f"  ... 还有 {len(ents) - 3} 条")
     return 0
 
 
