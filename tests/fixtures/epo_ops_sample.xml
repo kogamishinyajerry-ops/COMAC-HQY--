@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ops:world-patent-data xmlns:ops="http://www.epo.org/exchange">
+  <ops:search-result total-result-count="2">
+    <ops:exchange-documents>
+      <ops:exchange-document>
+        <ops:publication-reference>
+          <ops:document-id>
+            <ops:country>EP</ops:country>
+            <ops:doc-number>1234567</ops:doc-number>
+            <ops:kind>B1</ops:kind>
+            <ops:date>20210315</ops:date>
+          </ops:document-id>
+        </ops:publication-reference>
+        <ops:invention-title lang="en">FADEC throttle control lever for reverse thrust operation</ops:invention-title>
+        <ops:application-reference>
+          <ops:document-id>
+            <ops:date>20190110</ops:date>
+          </ops:document-id>
+        </ops:application-reference>
+        <ops:applicants>
+          <ops:applicant>
+            <ops:applicant-name>Airbus Operations SAS</ops:applicant-name>
+          </ops:applicant>
+        </ops:applicants>
+        <ops:inventors>
+          <ops:inventor>
+            <ops:inventor-name>Hans Schmidt</ops:inventor-name>
+          </ops:inventor>
+        </ops:inventors>
+        <ops:cpc-text>F02C9/28</ops:cpc-text>
+      </ops:exchange-document>
+      <ops:exchange-document>
+        <ops:publication-reference>
+          <ops:document-id>
+            <ops:country>WO</ops:country>
+            <ops:doc-number>2023123456</ops:doc-number>
+            <ops:kind>A1</ops:kind>
+            <ops:date>20230601</ops:date>
+          </ops:document-id>
+        </ops:publication-reference>
+        <ops:invention-title lang="en">Electronic engine control throttle quadrant with virtual detents</ops:invention-title>
+        <ops:application-reference>
+          <ops:document-id>
+            <ops:date>20221120</ops:date>
+          </ops:document-id>
+        </ops:application-reference>
+        <ops:applicants>
+          <ops:applicant>
+            <ops:applicant-name>Boeing Co</ops:applicant-name>
+          </ops:applicant>
+        </ops:applicants>
+        <ops:cpc-text>F02C9/46</ops:cpc-text>
+      </ops:exchange-document>
+    </ops:exchange-documents>
+  </ops:search-result>
+</ops:world-patent-data>

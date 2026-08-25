@@ -1,0 +1,44 @@
+{
+  "patents": [
+    {
+      "patent_id": "7143984",
+      "patent_title": "Multi-track continuous control thrust lever for aircraft",
+      "patent_abstract": "A thrust lever assembly having forward and reverse lever tracks with discrete detent positions and path switching for aircraft engine control.",
+      "patent_date": "20061219",
+      "patent_type": "utility",
+      "country": "US",
+      "assignee_organization": ["Airbus France SAS"],
+      "inventors": [
+        {"inventor_name_first": "Jean", "inventor_name_last": "Dupont"}
+      ],
+      "cpc_subgroup_id": ["B64D31/06", "B64D31/10"]
+    },
+    {
+      "patent_id": "10633105",
+      "patent_title": "Throttle lever haptic vibration alert with performance modulation",
+      "patent_abstract": "A throttle lever configured to vibrate asymmetrically to alert a pilot of engine thrust imbalance, integrated with FADEC feedback.",
+      "patent_date": "20200428",
+      "patent_type": "utility",
+      "country": "US",
+      "assignee_organization": ["Innovative Solutions and Support Inc"],
+      "inventors": [
+        {"inventor_name_first": "Geoffrey", "inventor_name_last": "Sutcliffe"}
+      ],
+      "cpc_subgroup_id": ["F02C9/28", "B64D31/00"]
+    },
+    {
+      "patent_id": "12162616",
+      "patent_title": "Dynamic virtual detent autothrottle interface",
+      "patent_abstract": "An autothrottle system with dynamic virtual detents for thrust setting, integrated with FADEC via EEC.",
+      "patent_date": "20240826",
+      "patent_type": "utility",
+      "country": "US",
+      "assignee_organization": ["Innovative Solutions and Support Inc"],
+      "inventors": [
+        {"inventor_name_first": "Roman", "inventor_name_last": "Parakry"}
+      ],
+      "cpc_subgroup_id": ["F02C9/28", "B64D31/04"]
+    }
+  ],
+  "total_patent_count": 3
+}
