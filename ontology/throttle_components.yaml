@@ -276,6 +276,128 @@ entities:
     keyword_groups:
       - [controllable pitch propeller, cpp, pitch control, 可调螺距桨, CPP 控制, 可调桨]
       - [pitch angle, blade angle, hub control, 桨距角, 桨叶角]
+  # 补 Phase B: 汽车发动机控制 (F02D41 + F02D13 + F02D17)
+  - id: component:engine-control-unit
+    label_zh: 发动机控制单元(ECU)
+    label_en: Engine Control Unit (ECU)
+    aliases: [ECU, engine control unit, 电控单元, 发动机控制器]
+    parent_id: component:throttle-quadrant
+    component_id: engine_control_unit
+    scope_level: core
+    keyword_groups:
+      - [engine control unit, ecu, electronic control unit, 发动机控制单元, 电控单元]
+      - [powertrain control, pcu, powertrain controller, 动力总成控制]
+  - id: component:engine-management-system
+    label_zh: 发动机管理系统
+    label_en: Engine Management System (EMS)
+    aliases: [EMS, engine management system, 发动机管理系统, 引擎管理系统]
+    parent_id: component:engine-control-unit
+    component_id: engine_management_system
+    scope_level: core
+    keyword_groups:
+      - [engine management system, ems, engine management, 发动机管理系统, 引擎管理系统]
+      - [fuel map, ignition map, lambda control, 油谱, 点火 MAP, 空燃比]
+  - id: component:variable-valve-timing
+    label_zh: 可变气门正时
+    label_en: Variable Valve Timing (VVT)
+    aliases: [VVT, 可变气门正时, variable valve timing, valve timing control, VVT-i, Vanos]
+    parent_id: component:engine-control-unit
+    component_id: variable_valve_timing
+    scope_level: core
+    keyword_groups:
+      - [variable valve timing, vvt, valve timing, cam phaser, 可变气门正时, 气门正时]
+      - [intake exhaust cam, vvt-i, vanos, intake valve timing, 进排气凸轮, 进排气气门]
+  - id: component:cylinder-deactivation
+    label_zh: 闭缸控制
+    label_en: Cylinder Deactivation (CDA)
+    aliases: [闭缸, CDA, cylinder deactivation, cylinder on demand, VCM, AFM]
+    parent_id: component:engine-control-unit
+    component_id: cylinder_deactivation
+    scope_level: core
+    keyword_groups:
+      - [cylinder deactivation, cda, cylinder on demand, vcm, afm, 闭缸, 可变气缸]
+      - [displacement on demand, dod, active fuel management, 变排量, 部分气缸停缸]
+  - id: component:turbocharger-control
+    label_zh: 涡轮增压器控制
+    label_en: Turbocharger Control
+    aliases: [涡轮控制, turbo control, wastegate, VGT, 涡轮增压控制]
+    parent_id: component:engine-control-unit
+    component_id: turbocharger_control
+    scope_level: core
+    keyword_groups:
+      - [turbocharger control, turbo control, wastegate, vgt, 涡轮增压控制, 涡轮控制]
+      - [boost pressure, variable geometry turbo, 增压压力, 可变几何涡轮]
+  - id: component:transmission-control-unit
+    label_zh: 变速箱控制单元(TCU)
+    label_en: Transmission Control Unit (TCU)
+    aliases: [TCU, 变速箱控制, transmission control unit, gear box control]
+    parent_id: component:throttle-quadrant
+    component_id: transmission_control_unit
+    scope_level: core
+    keyword_groups:
+      - [transmission control unit, tcu, gearbox control, 变速箱控制单元, 变速箱控制]
+      - [shift schedule, automatic transmission, at, cvt, dct, 换挡规律, 自动变速器]
+  # 补 Phase C: 船舶发动机控制 (F02D29/06 + F02M1/00 + B63H23/00)
+  - id: component:marine-engine-governor
+    label_zh: 船用发动机调速器
+    label_en: Marine Engine Governor
+    aliases: [船舶调速器, marine governor, engine governor, 船用调速器, 主机调速器]
+    parent_id: component:marine-throttle-control
+    component_id: marine_engine_governor
+    scope_level: core
+    keyword_groups:
+      - [marine engine governor, marine governor, engine governor, 船舶调速器, 船用调速器]
+      - [speed governor, rpm governor, droop, isochronous, 转速调速器, 速度控制]
+  - id: component:main-engine-remote-control
+    label_zh: 主机遥控系统
+    label_en: Main Engine Remote Control System
+    aliases: [主机遥控, main engine remote control, remote maneuvering, 主机遥控系统]
+    parent_id: component:engine-room-control
+    component_id: main_engine_remote_control
+    scope_level: core
+    keyword_groups:
+      - [main engine remote control, remote maneuvering, engine telegraph remote, 主机遥控, 主机遥控系统]
+      - [bridge control station remote, ecr remote, 驾驶台遥控, 机舱集控]
+  - id: component:engine-monitoring-marine
+    label_zh: 船舶发动机监测
+    label_en: Marine Engine Monitoring System
+    aliases: [发动机监测, engine monitoring, alarm monitoring, 机舱监测, 主机监测]
+    parent_id: component:engine-room-control
+    component_id: engine_monitoring_marine
+    scope_level: core
+    keyword_groups:
+      - [engine monitoring, alarm monitoring, marine engine monitoring, 发动机监测, 主机监测]
+      - [scada, condition monitoring, 参数显示, 报警系统, 状态监测]
+  - id: component:fuel-injection-marine
+    label_zh: 船用燃油喷射控制
+    label_en: Marine Fuel Injection Control
+    aliases: [燃油喷射, fuel injection, 船舶燃油喷射, 船用喷油控制]
+    parent_id: component:marine-engine-governor
+    component_id: fuel_injection_marine
+    scope_level: core
+    keyword_groups:
+      - [fuel injection, marine fuel injection, common rail, 燃油喷射, 船用燃油喷射]
+      - [injection timing, injection pressure, electronic unit injector, 喷油正时, 喷油压力]
+  - id: component:auxiliary-engine-control-marine
+    label_zh: 船舶辅机控制
+    label_en: Marine Auxiliary Engine Control
+    aliases: [辅机控制, auxiliary engine, auxiliary generator, 船舶辅机, 辅机遥控]
+    parent_id: component:engine-room-control
+    component_id: auxiliary_engine_control_marine
+    scope_level: core
+    keyword_groups:
+      - [auxiliary engine, auxiliary generator, aux engine control, 辅机, 辅机控制, 辅机遥控]
+      - [diesel generator set, genset control, 柴油发电机组, 应急发电机]
+  - id: component:diesel-electric-propulsion
+    label_zh: 柴油电力推进控制
+    label_en: Diesel-Electric Propulsion Control
+    aliases: [柴电推进, diesel electric, 柴电混合, 电力推进]
+    parent_id: component:engine-room-control
+    component_id: diesel_electric_propulsion
+    scope_level: core
+    keyword_groups:
+      - [diesel electric propulsion, diesel-electric, hybrid marine, 柴电推进, 电力推进]
+      - [propulsion motor, pmsm, shaft generator, 推进电机, 轴带发电机]
 relations:
   - subject_id: component:reverse-lever
     predicate: constrained_by
@@ -350,4 +472,46 @@ relations:
   - subject_id: component:reversing-lever-marine
     predicate: constrains
     object_id: component:engine-order-telegraph
+    evidence_basis: curated
+  # 补 Phase B 汽车发动机控制关系链
+  - subject_id: component:engine-management-system
+    predicate: implements
+    object_id: component:engine-control-unit
+    evidence_basis: curated
+  - subject_id: component:engine-control-unit
+    predicate: commands
+    object_id: component:variable-valve-timing
+    evidence_basis: curated
+  - subject_id: component:engine-control-unit
+    predicate: commands
+    object_id: component:cylinder-deactivation
+    evidence_basis: curated
+  - subject_id: component:engine-control-unit
+    predicate: commands
+    object_id: component:turbocharger-control
+    evidence_basis: curated
+  - subject_id: component:engine-control-unit
+    predicate: commands
+    object_id: component:transmission-control-unit
+    evidence_basis: curated
+  # 补 Phase C 船舶发动机控制关系链
+  - subject_id: component:marine-engine-governor
+    predicate: commands
+    object_id: component:fuel-injection-marine
+    evidence_basis: curated
+  - subject_id: component:main-engine-remote-control
+    predicate: commands
+    object_id: component:marine-engine-governor
+    evidence_basis: curated
+  - subject_id: component:engine-monitoring-marine
+    predicate: reports_to
+    object_id: component:main-engine-remote-control
+    evidence_basis: curated
+  - subject_id: component:auxiliary-engine-control-marine
+    predicate: parallel
+    object_id: component:main-engine-remote-control
+    evidence_basis: curated
+  - subject_id: component:diesel-electric-propulsion
+    predicate: governed_by
+    object_id: component:marine-engine-governor
     evidence_basis: curated

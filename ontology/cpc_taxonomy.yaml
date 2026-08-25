@@ -94,8 +94,52 @@ entities:
     code: F02D29/00
     scope_level: adjacent
     aliases: [F02D29, F02D 29/00, marine engine control, ship engine governor]
+  # 补 Phase B 汽车发动机控制 (F02D41 + F02D13 + F02D17)
+  - id: cpc:F02D41/00
+    label_zh: 燃烧发动机电子控制(ECU)
+    label_en: Electronic control of combustion engines
+    code: F02D41/00
+    scope_level: adjacent
+    aliases: [F02D41, F02D 41/00, ECU, electronic engine control, EMS]
+  - id: cpc:F02D13/02
+    label_zh: 燃烧发动机气门正时控制
+    label_en: Arrangements or methods for control of valve timing
+    code: F02D13/02
+    scope_level: adjacent
+    aliases: [F02D13/02, F02D 13/02, valve timing control, VVT, cam phaser]
+  - id: cpc:F02D17/00
+    label_zh: 燃烧发动机闭缸控制
+    label_en: Control of engines characterised by provision of means for controlling cylinders being out of operation
+    code: F02D17/00
+    scope_level: adjacent
+    aliases: [F02D17, F02D 17/00, cylinder deactivation, CDA, VCM]
+  # 补 Phase C 船舶发动机控制 (F02D29/06 + F02M1/00 + B63H23/00)
+  - id: cpc:F02D29/06
+    label_zh: 船用发动机调速器
+    label_en: "Governor peculiar to engines operating in marine installations"
+    code: F02D29/06
+    parent_id: cpc:F02D29/00
+    scope_level: adjacent
+    aliases: [F02D29/06, F02D 29/06, marine engine governor, marine governor]
+  - id: cpc:F02M1/00
+    label_zh: 燃油喷射控制
+    label_en: Control of fuel injection apparatus
+    code: F02M1/00
+    scope_level: adjacent
+    aliases: [F02M1, F02M 1/00, fuel injection control, common rail control]
+  - id: cpc:B63H23/00
+    label_zh: 船舶辅机与传动
+    label_en: Auxiliary drives on propulsion machinery
+    code: B63H23/00
+    scope_level: adjacent
+    aliases: [B63H23, B63H 23/00, auxiliary engine, ship auxiliary drive]
 relations:
   - {subject_id: cpc:B64D31/10, predicate: related_to, object_id: cpc:B64D33/00, evidence_basis: curated}
   - {subject_id: cpc:B64D33/10, predicate: narrows, object_id: cpc:B64D33/00, evidence_basis: official_hierarchy}
   - {subject_id: cpc:B63H21/21, predicate: narrows, object_id: cpc:B63H21/00, evidence_basis: official_hierarchy}
   - {subject_id: cpc:F02D29/00, predicate: related_to, object_id: cpc:B63H21/21, evidence_basis: curated}
+  - {subject_id: cpc:F02D13/02, predicate: related_to, object_id: cpc:F02D41/00, evidence_basis: official_hierarchy}
+  - {subject_id: cpc:F02D17/00, predicate: related_to, object_id: cpc:F02D41/00, evidence_basis: official_hierarchy}
+  - {subject_id: cpc:F02D29/06, predicate: narrows, object_id: cpc:F02D29/00, evidence_basis: official_hierarchy}
+  - {subject_id: cpc:F02M1/00, predicate: related_to, object_id: cpc:F02D29/06, evidence_basis: curated}
+  - {subject_id: cpc:B63H23/00, predicate: related_to, object_id: cpc:F02D29/00, evidence_basis: curated}
