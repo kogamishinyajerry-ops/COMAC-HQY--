@@ -217,6 +217,30 @@ def cmd_export(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_import(args: argparse.Namespace) -> int:
+    """Phase A:扩展 prior_art 检索池(thin facade,跑 scripts/import_prior_art_phase_a.py)。"""
+    import subprocess
+    cmd = [
+        sys.executable,
+        str(ROOT / "scripts" / "import_prior_art_phase_a.py"),
+    ]
+    cmd.extend(["--source", args.source])
+    if args.keyword:
+        for k in args.keyword:
+            cmd.extend(["--keyword", k])
+    if args.cpc:
+        for c in args.cpc:
+            cmd.extend(["--cpc", c])
+    cmd.extend(["--limit-per-query", str(args.limit_per_query)])
+    cmd.extend(["--filing-from", args.filing_from])
+    if args.dry_run:
+        cmd.append("--dry-run")
+    if args.bridge_migrate:
+        cmd.append("--bridge-migrate")
+    result = subprocess.run(cmd, env={**os.environ})
+    return result.returncode
+
+
 def cmd_patrol(args: argparse.Namespace) -> int:
     """跑 4 路巡检 (count / scope / integrity / cross_match 刷新)。"""
     if not _ensure_db():
@@ -331,6 +355,20 @@ def build_parser() -> argparse.ArgumentParser:
     sp.set_defaults(func=cmd_query)
 
     sub.add_parser("export", help="生成 pace_export.yaml (P-ACE 联动)").set_defaults(func=cmd_export)
+
+    sp_imp = sub.add_parser("import", help="Phase A:扩 prior_art 检索池")
+    sp_imp.add_argument("--source", default="all",
+                        choices=["all", "uspto-od", "epo-ops", "google-patents-playwright"])
+    sp_imp.add_argument("--keyword", action="append", default=None,
+                        help="可多次传,默认 3 词 (reverse thrust / FADEC / EEC)")
+    sp_imp.add_argument("--cpc", action="append", default=None,
+                        help="可多次传,默认 4 CPC (B64D31/00 + F02C9 三子)")
+    sp_imp.add_argument("--limit-per-query", type=int, default=500)
+    sp_imp.add_argument("--filing-from", default="2000-01-01")
+    sp_imp.add_argument("--dry-run", action="store_true", help="只打预算,不入库")
+    sp_imp.add_argument("--bridge-migrate", action="store_true", help="只跑桥表回填")
+    sp_imp.set_defaults(func=cmd_import)
+
     sub.add_parser("patrol", help="跑 4 路巡检").set_defaults(func=cmd_patrol)
     sub.add_parser("check", help="跑 17 项治理守卫").set_defaults(func=cmd_check)
     sub.add_parser("stats", help="db 表 + 计数").set_defaults(func=cmd_stats)
