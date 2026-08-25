@@ -783,6 +783,56 @@ SOURCES.extend([
 ])
 
 
+# ===== Phase A prior_art 三源（2026-08-25） =====
+# 守纪律：每个新来源挂精确 URL + license + disclaimer 三者非空
+# (governance source_license_and_boundaries 守卫要求)
+# - uspto-od / epo-ops 走 download 归档
+# - google-patents-playwright 走 metadata_only(只存响应 hash,不存 HTML 防 ToS/GDPR)
+SOURCES.extend([
+    {
+        "id": "uspto-od",
+        "kind": "prior_art_corpus",
+        "quality": "government_primary",
+        "org": "USPTO",
+        "title_zh": "USPTO 公开数据(PatentsView API)",
+        "title_en": "USPTO Open Data (PatentsView API)",
+        "url": "https://api.patentsview.org/patents/query",
+        "note_zh": "PatentsView 公开 REST API,无需 OAuth,限速 60 req/min。Phase A 用 cpc_subgroup_id + 关键词检索。[archive_policy=download]",
+        "note_en": "PatentsView public REST API, no OAuth required, 60 req/min rate limit. Phase A queries by cpc_subgroup_id + keyword.",
+        "license": "USPTO Open Data; see https://patentsview.org/about",
+        "disclaimer_zh": "先有技术检索辅助,不构成新颖性、创造性、自由实施或侵权法律意见。",
+        "disclaimer_en": "Prior-art search aid only; not a novelty, inventive-step, freedom-to-operate or infringement opinion.",
+    },
+    {
+        "id": "epo-ops",
+        "kind": "prior_art_corpus",
+        "quality": "government_primary",
+        "org": "EPO",
+        "title_zh": "EPO 开放专利服务(OPS v3.2)",
+        "title_en": "EPO Open Patent Services (OPS v3.2)",
+        "url": "https://ops.epo.org/3.2/rest-services/",
+        "note_zh": "EPO OPS 公开 REST API,OAuth2 client_credentials,凭据放 macOS Keychain (epo-ops/EPO_CONSUMER_KEY/SECRET),非商用限速 50 req/min。[archive_policy=download]",
+        "note_en": "EPO OPS public REST API, OAuth2 client_credentials, credentials stored in macOS Keychain (epo-ops/EPO_CONSUMER_KEY/SECRET), 50 req/min non-commercial rate limit.",
+        "license": "EPO OPS; non-commercial search use",
+        "disclaimer_zh": "先有技术检索辅助,不构成新颖性、创造性、自由实施或侵权法律意见。",
+        "disclaimer_en": "Prior-art search aid only; not a novelty, inventive-step, freedom-to-operate or infringement opinion.",
+    },
+    {
+        "id": "google-patents-playwright",
+        "kind": "prior_art_corpus",
+        "quality": "curverified",
+        "org": "Google LLC",
+        "title_zh": "Google Patents(Playwright 抓取)",
+        "title_en": "Google Patents (Playwright scrape)",
+        "url": "https://patents.google.com/",
+        "note_zh": "Playwright Chromium 抓 Google Patents 搜索结果页 + 详情页。captcha 触发 → log + skip。受 Google ToS 约束,违反 ToS 风险由调用方承担。[archive_policy=metadata_only]",
+        "note_en": "Playwright Chromium scrapes Google Patents search + detail pages. captcha → log + skip. Subject to Google ToS; caller assumes ToS risk.",
+        "license": "Google Patents web scraping; subject to Google ToS",
+        "disclaimer_zh": "先有技术检索辅助,不构成新颖性、创造性、自由实施或侵权法律意见。Google Patents 数据受 ToS 约束,仅作工程检索,违反 ToS 风险由调用方承担。",
+        "disclaimer_en": "Prior-art search aid only. Google Patents data subject to ToS; engineering search use only; ToS violation risk on caller.",
+    },
+])
+
 # ===== 知识库扩展接入（2026-07-28）：14 个新来源 =====
 # 守纪律 1：每个新来源必须挂精确 URL + 进 sources 表
 # 守纪律 2：archive_policy 标记放 note_zh 末尾，metadata_only 的来源不下载只登记
@@ -1979,6 +2029,48 @@ for item in REGULATORY_CONSTRAINTS:
     ))
 
 
+def install_prior_art_dedup_bridge(conn: sqlite3.Connection) -> None:
+    """Phase A:对 prior_art_patents 已有行反向生成 prior_art_publication_sources 桥表行。
+    老 google-patents-bigquery 行无原始响应 hash,占位 'bq-legacy' 标记。
+    """
+    existing_bridges = conn.execute(
+        "SELECT COUNT(*) FROM prior_art_publication_sources"
+    ).fetchone()[0]
+    if existing_bridges > 0:
+        return
+    rows = conn.execute(
+        """
+        SELECT publication_number, source_id, cpc_codes, checked_at
+        FROM prior_art_patents
+        """
+    ).fetchall()
+    fetched_at = "2026-08-25T00:00:00Z"
+    for r in rows:
+        pub = r[0]
+        source_id = r[1]
+        try:
+            import json as _json
+            codes = _json.loads(r[2])
+        except Exception:  # noqa: BLE001
+            codes = []
+        matched_query = "+".join(codes[:2]) if codes else "legacy-bq"
+        raw_url = (
+            f"https://patents.google.com/patent/{pub}"
+            if source_id == "google-patents-bigquery"
+            else ""
+        )
+        conn.execute(
+            """
+            INSERT OR IGNORE INTO prior_art_publication_sources (
+                publication_number, source_id, fetched_at, raw_url,
+                raw_payload_sha256, raw_local_path, matched_query, is_primary
+            ) VALUES (?, ?, ?, ?, 'bq-legacy', '', ?, 1)
+            """,
+            (pub, source_id, fetched_at, raw_url, matched_query),
+        )
+    conn.commit()
+
+
 def initialize(db_path: Path = DB_PATH) -> None:
     db_path.parent.mkdir(parents=True, exist_ok=True)
     if db_path.exists():
@@ -2153,6 +2245,20 @@ def initialize(db_path: Path = DB_PATH) -> None:
             checked_at         TEXT NOT NULL,
             disclaimer_zh      TEXT NOT NULL DEFAULT 'Google Patents Public Data (CC BY 4.0)；中文为多语种字段原文，非翻译'
         );
+        -- Phase A 跨源桥表:一个专利可在多源命中,保留多源 raw_payload + metadata
+        CREATE TABLE prior_art_publication_sources (
+            publication_number TEXT NOT NULL,
+            source_id          TEXT NOT NULL REFERENCES sources(id),
+            fetched_at         TEXT NOT NULL,
+            raw_url            TEXT NOT NULL,
+            raw_payload_sha256 TEXT NOT NULL,
+            raw_local_path     TEXT NOT NULL DEFAULT '',
+            matched_query      TEXT NOT NULL,
+            is_primary         INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (publication_number, source_id)
+        );
+        CREATE INDEX idx_paps_source ON prior_art_publication_sources(source_id, fetched_at);
+        CREATE INDEX idx_paps_primary ON prior_art_publication_sources(publication_number) WHERE is_primary = 1;
         CREATE TABLE source_archive_runs (
             id TEXT PRIMARY KEY,
             started_at TEXT NOT NULL,
@@ -2245,6 +2351,7 @@ def initialize(db_path: Path = DB_PATH) -> None:
         )
     install_ontology(conn)
     create_cross_match_schema(conn)
+    install_prior_art_dedup_bridge(conn)
     for model in MODELS:
         conn.execute(
             """INSERT INTO models VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)""",

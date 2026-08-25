@@ -142,6 +142,25 @@ def run_all_checks(conn: sqlite3.Connection) -> list[CheckResult]:
     ).fetchone()[0]
     checks.append(_result("source_license_and_boundaries", boundary_missing))
 
+    # Phase A 跨源桥表一致性:
+    # 1) 桥表每行 (pub, source_id) 的 source_id 必须在 sources 表(无孤儿)
+    # 2) prior_art_patents 每行至少 1 条 is_primary=1 桥表记录
+    bridge_orphans = conn.execute(
+        """SELECT COUNT(*) FROM prior_art_publication_sources ps
+           LEFT JOIN sources s ON s.id=ps.source_id WHERE s.id IS NULL"""
+    ).fetchone()[0]
+    bridge_no_primary = conn.execute(
+        """SELECT COUNT(*) FROM prior_art_patents pa
+           WHERE NOT EXISTS (
+               SELECT 1 FROM prior_art_publication_sources ps
+               WHERE ps.publication_number=pa.publication_number AND ps.is_primary=1
+           )"""
+    ).fetchone()[0]
+    bridge_total_failures = bridge_orphans + bridge_no_primary
+    checks.append(_result(
+        "prior_art_dedup_bridge_consistency", bridge_total_failures
+    ))
+
     return checks
 
 

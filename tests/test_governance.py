@@ -99,9 +99,9 @@ def test_clean_build_has_expected_ontology_counts(built_db: Path) -> None:
     assert referenced_models == model_ids
 
 
-def test_clean_build_has_sixty_sources(built_db: Path) -> None:
+def test_clean_build_has_sixty_three_sources(built_db: Path) -> None:
     with sqlite3.connect(built_db) as conn:
-        assert conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0] == 60
+        assert conn.execute("SELECT COUNT(*) FROM sources").fetchone()[0] == 63
         assert conn.execute(
             "SELECT COUNT(*) FROM sources WHERE license='' OR disclaimer_zh='' OR disclaimer_en=''"
         ).fetchone()[0] == 0
@@ -128,10 +128,10 @@ def test_cross_match_is_review_only(built_db: Path) -> None:
     assert statuses == {"suggested"}
 
 
-def test_seventeen_governance_checks_pass(built_db: Path) -> None:
+def test_eighteen_governance_checks_pass(built_db: Path) -> None:
     with sqlite3.connect(built_db) as conn:
         checks = run_all_checks(conn)
-    assert len(checks) == 17
+    assert len(checks) == 18
     assert all(check.passed for check in checks), [check for check in checks if not check.passed]
 
 
