@@ -4,7 +4,7 @@ from collections.abc import Iterable
 
 from .normalize import normalize_cpc
 
-CORE_PREFIXES = ("B64D31", "B64D33")
+CORE_PREFIXES = ("B64D31", "B64D33", "F02C9")
 ADJACENT_PREFIXES = ("B60K26", "B60K41", "G05D1", "H01H13", "H01H19", "H01H21")
 EXCLUDED_PREFIXES = ("B64D13",)
 

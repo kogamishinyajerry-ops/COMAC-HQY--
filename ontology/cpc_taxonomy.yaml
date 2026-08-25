@@ -33,6 +33,34 @@ entities:
   - {id: cpc:B60K41/00, label_zh: 车辆推进单元组合控制, label_en: Conjoint control of vehicle propulsion units, code: B60K41/00, scope_level: adjacent}
   - {id: cpc:G05D1/00, label_zh: 运载工具位置或航向控制, label_en: Control of position or course of vehicles, code: G05D1/00, scope_level: adjacent}
   - {id: cpc:H01H13/00, label_zh: 直线运动操作件开关, label_en: Switches with rectilinearly movable operating part, code: H01H13/00, scope_level: adjacent}
+  - id: cpc:F02C
+    label_zh: 燃气轮机
+    label_en: Gas-turbine plants
+    code: F02C
+    parent_id: cpc:B64D
+    scope_level: core
+    aliases: [F02C, gas turbine]
+  - id: cpc:F02C9/00
+    label_zh: 燃气轮机控制
+    label_en: Control of gas-turbine plants
+    code: F02C9/00
+    parent_id: cpc:F02C
+    scope_level: core
+    aliases: [F02C9, F02C 9/00, FADEC control, EEC control]
+  - id: cpc:F02C9/28
+    label_zh: 燃气轮机数字控制(FADEC)
+    label_en: Digital control of gas-turbine plants
+    code: F02C9/28
+    parent_id: cpc:F02C9/00
+    scope_level: core
+    aliases: [F02C9/28, F02C 9/28, digital engine control]
+  - id: cpc:F02C9/46
+    label_zh: 燃气轮机传感器与执行机构
+    label_en: Sensors or actuators for gas-turbine control
+    code: F02C9/46
+    parent_id: cpc:F02C9/00
+    scope_level: core
+    aliases: [F02C9/46, F02C 9/46, FADEC sensor]
 relations:
   - {subject_id: cpc:B64D31/10, predicate: related_to, object_id: cpc:B64D33/00, evidence_basis: curated}
   - {subject_id: cpc:B64D33/10, predicate: narrows, object_id: cpc:B64D33/00, evidence_basis: official_hierarchy}
