@@ -15,7 +15,7 @@
 | **epo-ops** (Open Patent Services) | `https://ops.epo.org/3.2/rest-services/` | OAuth2 client_credentials (免费注册) | ✅ 可达(凭据就绪后) |
 | **google-patents-playwright** | `https://patents.google.com/` | 无 | ⚠️ captcha 频发,timeout 修了但仍受限 |
 | **google-patents-xhr** (Phase E) | `https://patents.google.com/xhr/query` + `xhr/result` | 无 | ⚠️ IP 频次限流触发 "Sorry..." 503 |
-| **bq-public-patents** (Phase E) | `patents-public-data.patents.publications` (BQ CLI) | gcloud auth 即可 | ⚠️ gen-lang-client-* sub-quota 烧光时全阻 |
+| **bq-public-patents** (Phase E) | `patents-public-data.patents.publications` (BQ REST API) | gcloud auth 即可 | ⚠️ gen-lang-client-* sub-quota 烧光时真查询返 403, dryRun 走通 |
 | **google-patents-playwright** | `https://patents.google.com/` | 无 | ⚠️ captcha 频发,Phase A 接受低命中率 |
 
 **结论**:
@@ -25,7 +25,8 @@
   - epo-ops → ❌ 无 Keychain 凭据 (`security add-generic-password -s epo-ops ...` 未跑)
   - google-patents-playwright → ❌ Playwright 30ms timeout bug 已修,但 captcha 仍频发
   - google-patents-xhr → ❌ Google "Sorry..." 503 (IP 限流,过几小时可能恢复)
-  - bq-public-patents → ❌ gen-lang-client-0334150098 项目 sub-quota "Quota exceeded" (子项目 1 TB/月免费但 per-query/daily 子 quota 已烧光)
+  - bq-public-patents → ❌ gen-lang-client-0334150098 项目 sub-quota "Quota exceeded: free query bytes scanned" (1 TB/月免费但 per-query/daily 子 quota 已烧光)
+  - **dryRun (零字节) 走通**:`bq query --dry_run` 测得 F02C9 反推 CPC LIKE 查询扫 17 GB / query,free tier 1 TB/月约能跑 60 query。`bq query` CLI 在 macOS LibreSSL+OpenSSL 3.5.5 共存环境会触发 `SSLEOFError(8, 'SSL: UNEXPECTED_EOF_WHILE_READING')`(已实测),**REST API 直接 curl + gcloud token 绕开此 bug**(详见 §4)
 - **Phase E 兜底**:`scripts/import_prior_art_phase_e.py` 单值 BQ lookup (cache hit 不烧 quota) 可继续灌,前提是你手动提供 publication_number 清单
 - 真爬虫恢复路径:
   1. **EPO 最现实**:去 https://developers.epo.org/ 注册 (1 工作日) + 存 Keychain (`security add-generic-password -s epo-ops -a EPO_CONSUMER_KEY -w '<key>'` ... + 同样 SECRET) → adapter 即跑通
@@ -33,6 +34,35 @@
   3. **换 GCP 项目**:新建项目 (注册赠送 $300/90 天免费) → `gcloud config set project <new>` → BQ 不再受限
 - USPTO 路径保留代码占位(`uspto-od` adapter 已写,无 key 跳过)
 - Google 路径保留代码占位,接受 captcha
+
+---
+
+## 1.5 BigQuery REST API 路径 (2026-08-25 修复,Phase E 增量)
+
+**问题**:`bq query` CLI 在 macOS LibreSSL + OpenSSL 3.5.5 共存环境触发
+`SSLEOFError(8, 'SSL: UNEXPECTED_EOF_WHILE_READING')` — 真查询 + 大 body POST 必然失败。
+dryRun 走通是因为它只返 schema/bytes 估算,body 小。
+
+**修复**:`src/prior_art_adapters/bq_public.py` 改用 `requests.post` 直连
+`https://bigquery.googleapis.com/bigquery/v2/projects/<project>/queries`,
+用 `gcloud auth print-access-token` 取 token,带 `Accept-Encoding: gzip`。
+
+**已验证**(2026-08-25 手动 curl 跑通):
+- dryRun F02C9 反推 → 17 GB / query
+- dryRun F02D11 汽车油门 → 17 GB / query
+- 真查询受 sub-quota 卡死 → 返 `Quota exceeded: free query bytes scanned`
+
+**新增测试**(`tests/test_prior_art_adapters.py`):
+- `test_bq_adapter_rest_parses_schema_and_rows` — REST 响应 schema+rows 解析
+- `test_bq_adapter_rest_returns_none_on_quota_error` — 配额超限优雅返 None
+- `test_bq_adapter_rest_returns_none_on_no_token` — 无 token 不发请求
+- `test_bq_adapter_rest_returns_empty_list_on_no_rows` — 空结果集返 []
+- `test_bq_adapter_search_yields_records_from_rest` — 端到端 search() yield record
+
+**实际可跑场景**(恢复路径任选其一):
+1. 月初 / 月底 quota 重置 → BQ adapter 自动恢复(无需改代码)
+2. 换 GCP project:`gcloud config set project <new>`(新注册项目前 90 天有 $300 credit)
+3. 已知 publication_number 手动清单 → 走 `scripts/import_prior_art_phase_e.py`(单值 lookup,cache hit 不烧 quota)
 
 ---
 

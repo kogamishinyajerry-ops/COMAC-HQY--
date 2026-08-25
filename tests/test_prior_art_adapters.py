@@ -327,3 +327,181 @@ def test_ymd_to_iso_helper():
     assert _ymd_to_iso("20061219") == "2006-12-19"
     assert _ymd_to_iso("2006-12-19") == "2006-12-19"
     assert _ymd_to_iso("") == ""
+
+
+# ============================================================
+# BigQuery Public Adapter (Phase E, REST API 路径)
+# ============================================================
+
+def test_bq_adapter_rest_parses_schema_and_rows(monkeypatch):
+    """BQ REST API 返 schema + rows → _run_query_rest 正确解析为 dict 列表。"""
+    from src.prior_art_adapters.bq_public import BQPublicPatentsAdapter
+
+    fake_resp = MagicMock()
+    fake_resp.status_code = 200
+    fake_resp.json.return_value = {
+        "schema": {"fields": [
+            {"name": "publication_number", "type": "STRING"},
+            {"name": "country_code", "type": "STRING"},
+            {"name": "filing_date", "type": "INTEGER"},
+        ]},
+        "rows": [
+            {"f": [{"v": "US-10000001-B2"}, {"v": "US"}, {"v": "20200115"}]},
+            {"f": [{"v": "US-10000002-B2"}, {"v": "US"}, {"v": "20200201"}]},
+        ],
+        "totalBytesProcessed": "15600000000",
+        "jobComplete": True,
+    }
+
+    monkeypatch.setattr(
+        "src.prior_art_adapters.bq_public.requests.post",
+        lambda *a, **kw: fake_resp,
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_access_token",
+        staticmethod(lambda: "FAKE_TOKEN"),
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_project_id",
+        staticmethod(lambda: "test-project"),
+    )
+
+    adapter = BQPublicPatentsAdapter()
+    rows = adapter._run_query_rest("SELECT 1")
+    assert rows is not None
+    assert len(rows) == 2
+    assert rows[0]["publication_number"] == "US-10000001-B2"
+    assert rows[0]["country_code"] == "US"
+    assert rows[0]["filing_date"] == "20200115"
+
+
+def test_bq_adapter_rest_returns_none_on_quota_error(monkeypatch):
+    """Quota exceeded → _run_query_rest 返 None,不抛异常。"""
+    from src.prior_art_adapters.bq_public import BQPublicPatentsAdapter
+
+    fake_resp = MagicMock()
+    fake_resp.status_code = 200
+    fake_resp.json.return_value = {
+        "error": {
+            "code": 403,
+            "message": "Quota exceeded: free query bytes scanned",
+            "status": "PERMISSION_DENIED",
+        },
+    }
+
+    monkeypatch.setattr(
+        "src.prior_art_adapters.bq_public.requests.post",
+        lambda *a, **kw: fake_resp,
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_access_token",
+        staticmethod(lambda: "FAKE_TOKEN"),
+    )
+
+    adapter = BQPublicPatentsAdapter()
+    rows = adapter._run_query_rest("SELECT 1")
+    assert rows is None
+
+
+def test_bq_adapter_rest_returns_none_on_no_token(monkeypatch):
+    """无 gcloud token → _run_query_rest 返 None,不发起网络请求。"""
+    from src.prior_art_adapters.bq_public import BQPublicPatentsAdapter
+
+    post_called = {"n": 0}
+
+    def fake_post(*a, **kw):
+        post_called["n"] += 1
+        return MagicMock()
+
+    monkeypatch.setattr(
+        "src.prior_art_adapters.bq_public.requests.post",
+        fake_post,
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_access_token",
+        staticmethod(lambda: None),  # token 不可用
+    )
+
+    adapter = BQPublicPatentsAdapter()
+    rows = adapter._run_query_rest("SELECT 1")
+    assert rows is None
+    assert post_called["n"] == 0
+
+
+def test_bq_adapter_rest_returns_empty_list_on_no_rows(monkeypatch):
+    """查询成功但 rows 为空 → 返 [] (不是 None),search() 正常完成。"""
+    from src.prior_art_adapters.bq_public import BQPublicPatentsAdapter
+
+    fake_resp = MagicMock()
+    fake_resp.status_code = 200
+    fake_resp.json.return_value = {
+        "schema": {"fields": [{"name": "publication_number", "type": "STRING"}]},
+        "rows": [],       # 空结果集
+    }
+
+    monkeypatch.setattr(
+        "src.prior_art_adapters.bq_public.requests.post",
+        lambda *a, **kw: fake_resp,
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_access_token",
+        staticmethod(lambda: "T"),
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_project_id",
+        staticmethod(lambda: "p"),
+    )
+
+    adapter = BQPublicPatentsAdapter()
+    rows = adapter._run_query_rest("SELECT publication_number FROM tbl LIMIT 0")
+    assert rows == []
+
+
+def test_bq_adapter_search_yields_records_from_rest(monkeypatch):
+    """search() 端到端:REST 返 1 行 → yield 1 个 PriorArtRecord,字段映射正确。"""
+    from src.prior_art_adapters.bq_public import BQPublicPatentsAdapter
+
+    fake_resp = MagicMock()
+    fake_resp.status_code = 200
+    fake_resp.json.return_value = {
+        "schema": {"fields": [
+            {"name": "publication_number", "type": "STRING"},
+            {"name": "country_code", "type": "STRING"},
+            {"name": "family_id", "type": "INTEGER"},
+            {"name": "filing_date", "type": "INTEGER"},
+            {"name": "publication_date", "type": "INTEGER"},
+            {"name": "grant_date", "type": "INTEGER"},
+        ]},
+        "rows": [
+            {"f": [{"v": "US-10000001-B2"}, {"v": "US"}, {"v": "12345"},
+                   {"v": "20200115"}, {"v": "20200615"}, {"v": "20200801"}]},
+        ],
+    }
+
+    monkeypatch.setattr(
+        "src.prior_art_adapters.bq_public.requests.post",
+        lambda *a, **kw: fake_resp,
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_access_token",
+        staticmethod(lambda: "T"),
+    )
+    monkeypatch.setattr(
+        BQPublicPatentsAdapter, "_gcloud_project_id",
+        staticmethod(lambda: "p"),
+    )
+
+    adapter = BQPublicPatentsAdapter()
+    q = PriorArtQuery(
+        keywords=("reverse thrust",), cpc_prefixes=("F02C9",),
+        per_query_limit=5, filing_date_from="2020-01-01",
+    )
+    results = list(adapter.search(q))
+    assert len(results) == 1
+    rec = results[0]
+    assert rec.publication_number == "US10000001B2"   # normalize 去 '-'
+    assert rec.country_code == "US"
+    assert rec.filing_date == "2020-01-15"
+    assert rec.grant_date == "2020-08-01"
+    assert rec.family_id == "12345"
+    assert rec.source_id == "bq-public-patents"
