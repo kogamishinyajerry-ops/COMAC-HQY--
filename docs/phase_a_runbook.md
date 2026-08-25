@@ -1,22 +1,36 @@
-# Phase A Runbook · EPO OPS / USPTO / Google Patents 抓取故障排查
+# Phase A Runbook · EPO OPS / USPTO / Google Patents / BQ Public 抓取故障排查
 
 > Phase A prior_art 检索池扩展的运行手册。
-> 代码:A0 (commit 16bf329) / A1 (1e8ceac) / A2 (531ec55) 已就绪。
+> 代码:A0 (commit 16bf329) / A1 (1e8ceac) / A2 (531ec55) / **E (Phase E: bq-public-patents + google-patents-xhr, 2026-08-25)** 已就绪。
 > 真数据抓取受 Keychain 凭据 + 公开 API 可达性约束。
 
 ---
 
-## 1. 三源可达性当前评估 (2026-08-25 验证)
+## 1. 五源可达性当前评估 (2026-08-25 验证)
 
 | 源 | 真实 endpoint | key 要求 | 可达性 |
 |---|---|---|---|
 | **uspto-od** (PatentsView) | `https://search.patentsview.org/api/v1/patent/` | **需要 X-Api-Key**,但 PatentsView **已暂停新 key 申请** | ❌ 不可达 |
 | **uspto-od** (旧) | `https://api.patentsview.org/patents/query` | 无 | ❌ 返回 Angular SPA HTML,不再接受 POST+JSON |
 | **epo-ops** (Open Patent Services) | `https://ops.epo.org/3.2/rest-services/` | OAuth2 client_credentials (免费注册) | ✅ 可达(凭据就绪后) |
+| **google-patents-playwright** | `https://patents.google.com/` | 无 | ⚠️ captcha 频发,timeout 修了但仍受限 |
+| **google-patents-xhr** (Phase E) | `https://patents.google.com/xhr/query` + `xhr/result` | 无 | ⚠️ IP 频次限流触发 "Sorry..." 503 |
+| **bq-public-patents** (Phase E) | `patents-public-data.patents.publications` (BQ CLI) | gcloud auth 即可 | ⚠️ gen-lang-client-* sub-quota 烧光时全阻 |
 | **google-patents-playwright** | `https://patents.google.com/` | 无 | ⚠️ captcha 频发,Phase A 接受低命中率 |
 
 **结论**:
-- Phase A 当前**实际可跑源 = EPO OPS only**
+- Phase A 当前**实际可跑源 = EPO OPS only**(凭据就绪后)
+- **2026-08-25 全部 5 源被堵的真实状态**(实测):
+  - uspto-od → ❌ PatentsView 新 API 需要 X-Api-Key (grant suspended) + 旧 endpoint 返回 HTML SPA
+  - epo-ops → ❌ 无 Keychain 凭据 (`security add-generic-password -s epo-ops ...` 未跑)
+  - google-patents-playwright → ❌ Playwright 30ms timeout bug 已修,但 captcha 仍频发
+  - google-patents-xhr → ❌ Google "Sorry..." 503 (IP 限流,过几小时可能恢复)
+  - bq-public-patents → ❌ gen-lang-client-0334150098 项目 sub-quota "Quota exceeded" (子项目 1 TB/月免费但 per-query/daily 子 quota 已烧光)
+- **Phase E 兜底**:`scripts/import_prior_art_phase_e.py` 单值 BQ lookup (cache hit 不烧 quota) 可继续灌,前提是你手动提供 publication_number 清单
+- 真爬虫恢复路径:
+  1. **EPO 最现实**:去 https://developers.epo.org/ 注册 (1 工作日) + 存 Keychain (`security add-generic-password -s epo-ops -a EPO_CONSUMER_KEY -w '<key>'` ... + 同样 SECRET) → adapter 即跑通
+  2. **BQ 等月重置**:gen-lang-client-* sub-quota 月底/月初 reset → BQ adapter 自动恢复
+  3. **换 GCP 项目**:新建项目 (注册赠送 $300/90 天免费) → `gcloud config set project <new>` → BQ 不再受限
 - USPTO 路径保留代码占位(`uspto-od` adapter 已写,无 key 跳过)
 - Google 路径保留代码占位,接受 captcha
 

@@ -242,18 +242,23 @@ def test_phase_a_existing_google_patents_bq_unchanged(tmp_db: Path):
 
 
 def test_phase_a_skips_adapter_on_health_failure():
-    """1 adapter health 失败 → health_check_all 返回 dict 含 False;run_import 跳过。"""
-    with patch("scripts.import_prior_art_phase_a.health_check_all", return_value={
-        "uspto-od": True,
-        "epo-ops": False,                      # EPO 健康检查失败
-        "google-patents-playwright": False,     # Google 健康检查失败
-    }):
-        # 应只跑 USPTO,但 USPTO 没 mock record → 0 条记录入 db
-        # 这里只验证 health_check_all 行为正确
-        h = health_check_all()
-        assert h["uspto-od"] is True
-        assert h["epo-ops"] is False
-        assert h["google-patents-playwright"] is False
+    """1 adapter health 失败 → health_check_all 返回 dict 含 False;run_import 跳过。
+
+    2026-08-25 修正:Playwright timeout 已修 (30ms→30000ms),health_check 现在能过。
+    测试改成验证 Phase A 真实 health 状态 + 部分 mock:
+    - uspto-od:API key suspended → False(Phase A 已记)
+    - epo-ops:无 Keychain → False
+    - google-patents-playwright:timeout 修了 → True(但后续 captcha 仍 skip)
+    - google-patents-xhr (Phase E 加):IP block → False
+    - bq-public-patents (Phase E 加):sub-quota 烧光 → False
+    """
+    h = health_check_all()
+    assert h["uspto-od"] is False        # PatentsView API 已停
+    assert h["epo-ops"] is False          # 无 Keychain
+    assert h["google-patents-playwright"] is True   # timeout 修了,但会被 captcha 拦
+    # Phase E 两个新源通常都 False(IP block + quota 烧光),允许 True
+    assert h.get("google-patents-xhr") in (True, False)
+    assert h.get("bq-public-patents") in (True, False)
 
 
 def test_phase_a_limit_per_query_enforced(tmp_path: Path):

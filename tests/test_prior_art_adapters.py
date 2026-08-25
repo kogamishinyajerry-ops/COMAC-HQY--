@@ -312,12 +312,15 @@ def test_health_check_returns_bool():
         assert isinstance(result, bool)
 
 
-def test_adapter_registry_instantiates_all_three():
+def test_adapter_registry_instantiates_all_five():
+    # 2026-08-25 Phase E 加 bq-public-patents + google-patents-xhr 共 5 个
     assert "uspto-od" in ADAPTERS
     assert "epo-ops" in ADAPTERS
     assert "google-patents-playwright" in ADAPTERS
+    assert "google-patents-xhr" in ADAPTERS
+    assert "bq-public-patents" in ADAPTERS
     a_list = all_adapters()
-    assert len(a_list) == 3
+    assert len(a_list) == 5
 
 
 def test_ymd_to_iso_helper():

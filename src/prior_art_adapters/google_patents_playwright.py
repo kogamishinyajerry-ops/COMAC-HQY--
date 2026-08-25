@@ -25,7 +25,7 @@ log = logging.getLogger(__name__)
 
 _BASE = "https://patents.google.com"
 _SEARCH_PATH = "/"
-_DEFAULT_TIMEOUT = 30
+_DEFAULT_TIMEOUT = 30_000          # Playwright timeout 单位 ms
 _CAPTCHA_MARKERS = ("captcha", "unusual traffic", "/sorry/", "robot check")
 
 

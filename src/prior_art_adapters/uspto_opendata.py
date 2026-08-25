@@ -66,7 +66,18 @@ class USPTOOpenDataAdapter(BaseAdapter):
                 json={"q": {"patent_id": "US10000000"}, "f": ["patent_id"]},
                 timeout=5,
             )
-            return r.status_code == 200
+            # 严格:返回 HTML/Angular SPA 也不算健康,旧 endpoint 已停
+            # 必须返回 JSON 且包含 patents 字段
+            if r.status_code != 200:
+                return False
+            ctype = r.headers.get("Content-Type", "")
+            if "json" not in ctype.lower():
+                return False
+            try:
+                data = r.json()
+                return "patents" in data or "count" in data
+            except (ValueError, json.JSONDecodeError):
+                return False
         except requests.RequestException as exc:
             log.warning("USPTO health check failed: %s", exc)
             return False
