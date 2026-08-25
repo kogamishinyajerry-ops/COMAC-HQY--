@@ -50,8 +50,14 @@ def main() -> int:
     conn.row_factory = sqlite3.Row
     conn.execute("PRAGMA foreign_keys = ON")
     try:
-        before = conn.execute("SELECT COUNT(*) FROM prior_art_publication_sources").fetchone()[0]
-        LOG.info("bridge rows before: %d", before)
+        table_exists = conn.execute(
+            "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='prior_art_publication_sources'"
+        ).fetchone()[0]
+        if table_exists:
+            before = conn.execute("SELECT COUNT(*) FROM prior_art_publication_sources").fetchone()[0]
+        else:
+            before = 0
+        LOG.info("bridge rows before: %d (table_exists=%s)", before, bool(table_exists))
 
         if args.dry_run:
             LOG.info("[dry-run] skip migration")

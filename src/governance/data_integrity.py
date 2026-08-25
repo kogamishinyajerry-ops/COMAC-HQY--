@@ -38,7 +38,7 @@ def run_all_checks(conn: sqlite3.Connection) -> list[CheckResult]:
     registry_count = conn.execute("SELECT COUNT(*) FROM ontology_registry").fetchone()[0]
     checks.append(CheckResult("ontology_registry_four", registry_count == 4, str(registry_count)))
 
-    floors = {"aircraft_family": 9, "throttle_component": 22, "regulatory_clause": 15, "cpc_class": 22}
+    floors = {"aircraft_family": 9, "throttle_component": 28, "regulatory_clause": 15, "cpc_class": 25}
     floor_failures = []
     for ontology_type, floor in floors.items():
         count = conn.execute(

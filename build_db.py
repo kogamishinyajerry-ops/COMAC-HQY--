@@ -2032,7 +2032,28 @@ for item in REGULATORY_CONSTRAINTS:
 def install_prior_art_dedup_bridge(conn: sqlite3.Connection) -> None:
     """Phase A:对 prior_art_patents 已有行反向生成 prior_art_publication_sources 桥表行。
     老 google-patents-bigquery 行无原始响应 hash,占位 'bq-legacy' 标记。
+
+    表不存在时先 CREATE(对未走完整 initialize 的旧库做幂等迁移)。
     """
+    table_exists = conn.execute(
+        "SELECT COUNT(*) FROM sqlite_master WHERE type='table' AND name='prior_art_publication_sources'"
+    ).fetchone()[0]
+    if not table_exists:
+        conn.executescript("""
+        CREATE TABLE prior_art_publication_sources (
+            publication_number TEXT NOT NULL,
+            source_id          TEXT NOT NULL REFERENCES sources(id),
+            fetched_at         TEXT NOT NULL,
+            raw_url            TEXT NOT NULL,
+            raw_payload_sha256 TEXT NOT NULL,
+            raw_local_path     TEXT NOT NULL DEFAULT '',
+            matched_query      TEXT NOT NULL,
+            is_primary         INTEGER NOT NULL DEFAULT 0,
+            PRIMARY KEY (publication_number, source_id)
+        );
+        CREATE INDEX idx_paps_source ON prior_art_publication_sources(source_id, fetched_at);
+        CREATE INDEX idx_paps_primary ON prior_art_publication_sources(publication_number) WHERE is_primary = 1;
+        """)
     existing_bridges = conn.execute(
         "SELECT COUNT(*) FROM prior_art_publication_sources"
     ).fetchone()[0]

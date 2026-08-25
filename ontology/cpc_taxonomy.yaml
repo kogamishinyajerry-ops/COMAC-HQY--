@@ -74,6 +74,28 @@ entities:
     code: G05G1/00
     scope_level: adjacent
     aliases: [G05G1, G05G 1/00, control lever, pedal, hand wheel, accelerator pedal]
+  # Phase C: 船舶油门/车钟/可调螺距桨 (B63H21/00 顶层 + B63H21/21 控制 + F02D29/00 船用发动机控制)
+  - id: cpc:B63H21/00
+    label_zh: 船舶推进装置
+    label_en: Propulsion of marine vessels
+    code: B63H21/00
+    scope_level: adjacent
+    aliases: [B63H21, B63H 21/00, marine propulsion, ship propulsion]
+  - id: cpc:B63H21/21
+    label_zh: 船舶推进控制
+    label_en: Control of propulsion of marine vessels
+    code: B63H21/21
+    parent_id: cpc:B63H21/00
+    scope_level: adjacent
+    aliases: [B63H21/21, B63H 21/21, marine propulsion control, ship throttle control]
+  - id: cpc:F02D29/00
+    label_zh: 船用发动机控制
+    label_en: "Controlling engines peculiar to engines operating in marine installations"
+    code: F02D29/00
+    scope_level: adjacent
+    aliases: [F02D29, F02D 29/00, marine engine control, ship engine governor]
 relations:
   - {subject_id: cpc:B64D31/10, predicate: related_to, object_id: cpc:B64D33/00, evidence_basis: curated}
   - {subject_id: cpc:B64D33/10, predicate: narrows, object_id: cpc:B64D33/00, evidence_basis: official_hierarchy}
+  - {subject_id: cpc:B63H21/21, predicate: narrows, object_id: cpc:B63H21/00, evidence_basis: official_hierarchy}
+  - {subject_id: cpc:F02D29/00, predicate: related_to, object_id: cpc:B63H21/21, evidence_basis: curated}

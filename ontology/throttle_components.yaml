@@ -215,6 +215,67 @@ entities:
     keyword_groups:
       - [cruise control, adaptive cruise, acc, 定速巡航, 巡航控制, 自适应巡航]
       - [set speed, follow distance, throttle override, 设定车速, 跟车距离, 油门接管]
+  # Phase C: 船舶油门/车钟/驾驶台-机舱双站/可调螺距桨 (B63H21/00 + B63H21/21 + F02D29/00)
+  - id: component:marine-throttle-control
+    label_zh: 船舶油门控制台
+    label_en: Marine Throttle Control Console
+    aliases: [marine throttle, ship throttle console, 主推进控制台, 船用油门, 主机控制台]
+    parent_id: component:throttle-quadrant
+    component_id: marine_throttle_control
+    scope_level: core
+    keyword_groups:
+      - [marine throttle, ship throttle, vessel throttle, 船舶油门, 主机控制台]
+      - [main engine control, propulsion control, 主推进控制, 主机控制]
+  - id: component:engine-order-telegraph
+    label_zh: 车钟(令钟)
+    label_en: Engine Order Telegraph (EOT)
+    aliases: [车钟, 令钟, EOT, engine telegraph, order telegraph, 主机令]
+    parent_id: component:marine-throttle-control
+    component_id: engine_order_telegraph
+    scope_level: core
+    keyword_groups:
+      - [engine order telegraph, eot, telegraph, 车钟, 令钟, 主机令]
+      - [bridge to engine room, command transmit, 驾机通信, 速度命令]
+  - id: component:bridge-control-station
+    label_zh: 驾驶台控制站
+    label_en: Bridge Control Station
+    aliases: [驾驶台, bridge, bridge console, navigation bridge, 驾控台]
+    parent_id: component:engine-order-telegraph
+    component_id: bridge_control_station
+    scope_level: core
+    keyword_groups:
+      - [bridge control, bridge station, navigation bridge, 驾驶台控制, 驾控台]
+      - [command station, maneuvering station, 操纵站, 主机发令]
+  - id: component:engine-room-control
+    label_zh: 机舱控制站
+    label_en: Engine-Room Control Station (ECR)
+    aliases: [机舱, 机舱控制, ECR, engine control room, engine room console, 集控室]
+    parent_id: component:marine-throttle-control
+    component_id: engine_room_control
+    scope_level: core
+    keyword_groups:
+      - [engine room control, ecr, engine control room, 机舱控制, 集控室]
+      - [remote control station, manned unmanned, 机舱遥控, 无人机舱]
+  - id: component:reversing-lever-marine
+    label_zh: 船舶正倒车杆
+    label_en: Marine Reversing Lever (Astern/Ahead)
+    aliases: [正倒车杆, 倒车杆, ahead astern lever, marine reversing, reversing gear]
+    parent_id: component:marine-throttle-control
+    component_id: reversing_lever_marine
+    scope_level: core
+    keyword_groups:
+      - [reversing lever, ahead astern, marine reverse, 正倒车, 倒车杆, 换向机构]
+      - [clutch, reverse gear, ahead position, astern position, 换向, 倒车档]
+  - id: component:cpp-control
+    label_zh: 可调螺距桨控制
+    label_en: Controllable Pitch Propeller (CPP) Control
+    aliases: [CPP 控制, 可调桨, controllable pitch, cpp, pitch control]
+    parent_id: component:engine-room-control
+    component_id: cpp_control
+    scope_level: core
+    keyword_groups:
+      - [controllable pitch propeller, cpp, pitch control, 可调螺距桨, CPP 控制, 可调桨]
+      - [pitch angle, blade angle, hub control, 桨距角, 桨叶角]
 relations:
   - subject_id: component:reverse-lever
     predicate: constrained_by
@@ -268,4 +329,25 @@ relations:
   - subject_id: component:cruise-control-throttle
     predicate: commands
     object_id: component:electronic-throttle-control
+    evidence_basis: curated
+  # Phase C 船舶油门关系链
+  - subject_id: component:bridge-control-station
+    predicate: hosts
+    object_id: component:engine-order-telegraph
+    evidence_basis: curated
+  - subject_id: component:engine-order-telegraph
+    predicate: commands
+    object_id: component:engine-room-control
+    evidence_basis: curated
+  - subject_id: component:engine-room-control
+    predicate: receives_command_from
+    object_id: component:engine-order-telegraph
+    evidence_basis: curated
+  - subject_id: component:engine-room-control
+    predicate: commands
+    object_id: component:cpp-control
+    evidence_basis: curated
+  - subject_id: component:reversing-lever-marine
+    predicate: constrains
+    object_id: component:engine-order-telegraph
     evidence_basis: curated

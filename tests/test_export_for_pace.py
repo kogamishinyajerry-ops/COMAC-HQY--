@@ -48,7 +48,7 @@ def test_export_counts_match_real_db(real_export):
     cov = real_export["coverage"]
     assert cov["curated_patents"] == 8, f"期望 8 curated 专利,实际 {cov['curated_patents']}"
     assert cov["cross_matches"] == 36, f"期望 36 cross_match,实际 {cov['cross_matches']}"
-    assert cov["throttle_components"] == 16, f"期望 16 组件,实际 {cov['throttle_components']}"
+    assert cov["throttle_components"] == 28, f"期望 28 组件,实际 {cov['throttle_components']}"
     assert cov["clause_entities"] == 15, f"期望 15 条款,实际 {cov['clause_entities']}"
 
 
@@ -164,7 +164,7 @@ def test_build_export_missing_db_returns_empty(tmp_path):
     assert data["curated_patents"] == []
     assert data["cross_matches"] == []
     # 但 ontology yaml 仍能读(不依赖 DB)
-    assert data["coverage"]["throttle_components"] == 22
+    assert data["coverage"]["throttle_components"] == 28
     assert data["coverage"]["clause_entities"] == 15
 
 

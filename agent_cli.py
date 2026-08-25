@@ -8,7 +8,7 @@
   rebuild       重建 SQLite 知识库 (跑 build_db.initialize)
   query         关键词查 patents / regulatory_constraints
   export        重新生成 outputs/pace_export.yaml (供 P-ACE / bridge 消费)
-  import        Phase A/B 扩 prior_art 检索池 (跑 scripts/import_prior_art_phase_a.py)
+  import        Phase A/B/C 扩 prior_art 检索池 (跑 scripts/import_prior_art_phase_a.py)
   patrol        跑 4 路巡检 → outputs/governance/
   check         跑 18 项治理守卫
   stats         列出 db 表 + 计数
@@ -219,10 +219,11 @@ def cmd_export(args: argparse.Namespace) -> int:
 
 
 def cmd_import(args: argparse.Namespace) -> int:
-    """Phase A/B:扩展 prior_art 检索池(thin facade,跑 scripts/import_prior_art_phase_a.py)。
+    """Phase A/B/C:扩展 prior_art 检索池(thin facade,跑 scripts/import_prior_art_phase_a.py)。
 
     Phase A 默认:航空油门台/反推/FADEC/EEC (CPC: B64D31/00 + F02C9 三子)
     Phase B 默认:汽车油门/加速踏板/线控油门/ETC (CPC: B60K26/00 + B60K31/00 + G05G1/00)
+    Phase C 默认:船舶油门/车钟/驾驶台-机舱双站/CPP (CPC: B63H21/00 + B63H21/21 + F02D29/00)
     """
     import subprocess
 
@@ -233,6 +234,9 @@ def cmd_import(args: argparse.Namespace) -> int:
     elif args.phase == "B":
         keyword_default = ["throttle", "accelerator", "drive-by-wire", "ETC", "electronic throttle", "pedal"]
         cpc_default = ["B60K26/00", "B60K31/00", "G05G1/00"]
+    elif args.phase == "C":
+        keyword_default = ["marine throttle", "engine order telegraph", "EOT", "ship engine control", "bridge control", "controllable pitch propeller"]
+        cpc_default = ["B63H21/00", "B63H21/21", "F02D29/00"]
     else:
         keyword_default = None
         cpc_default = None
@@ -377,15 +381,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("export", help="生成 pace_export.yaml (P-ACE 联动)").set_defaults(func=cmd_export)
 
-    sp_imp = sub.add_parser("import", help="Phase A/B:扩 prior_art 检索池")
-    sp_imp.add_argument("--phase", choices=["A", "B"], default="A",
-                        help="A=航空油门台/反推/FADEC/EEC;B=汽车油门/加速踏板/线控油门/ETC (默认 A)")
+    sp_imp = sub.add_parser("import", help="Phase A/B/C:扩 prior_art 检索池")
+    sp_imp.add_argument("--phase", choices=["A", "B", "C"], default="A",
+                        help="A=航空油门台/反推/FADEC/EEC;B=汽车油门/加速踏板/线控油门/ETC;C=船舶油门/车钟/驾驶台-机舱/CPP (默认 A)")
     sp_imp.add_argument("--source", default="all",
                         choices=["all", "uspto-od", "epo-ops", "google-patents-playwright"])
     sp_imp.add_argument("--keyword", action="append", default=None,
-                        help="可多次传,默认按 --phase:A=3 词 (reverse thrust/FADEC/EEC),B=6 词 (throttle/accelerator/drive-by-wire/ETC/electronic throttle/pedal)")
+                        help="可多次传,默认按 --phase:A=3 词,B=6 词,C=6 词")
     sp_imp.add_argument("--cpc", action="append", default=None,
-                        help="可多次传,默认按 --phase:A=4 CPC (B64D31/00+F02C9 三子),B=3 CPC (B60K26/00+B60K31/00+G05G1/00)")
+                        help="可多次传,默认按 --phase:A=4 CPC,B=3 CPC,C=3 CPC")
     sp_imp.add_argument("--limit-per-query", type=int, default=500)
     sp_imp.add_argument("--filing-from", default="2000-01-01")
     sp_imp.add_argument("--dry-run", action="store_true", help="只打预算,不入库")
