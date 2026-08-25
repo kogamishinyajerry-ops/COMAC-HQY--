@@ -154,6 +154,67 @@ entities:
     keyword_groups:
       - [thrust scheduling, control law, control schedule, thrust control law, 推力调度, 控制律, 控制律调度]
       - [flight envelope, envelope protection, max thrust limit, 飞行包线, 包线保护, 最大推力限制]
+  # Phase B: 汽车油门/加速踏板/线控油门/电子节气门/巡航 (B60K26 / B60K31 / G05G1)
+  - id: component:accelerator-pedal
+    label_zh: 加速踏板
+    label_en: Accelerator Pedal
+    aliases: [油门踏板, accelerator, gas pedal, foot pedal, drive pedal]
+    parent_id: component:throttle-quadrant
+    component_id: accelerator_pedal
+    scope_level: core
+    keyword_groups:
+      - [accelerator pedal, gas pedal, accelerator, throttle pedal, 加速踏板, 油门踏板]
+      - [foot pedal, drive pedal, 踏板, 脚踩]
+  - id: component:pedal-position-sensor
+    label_zh: 加速踏板位置传感器
+    label_en: Accelerator Pedal Position Sensor
+    aliases: [踏板位置传感器, pedal position sensor, APPS, pedal angle sensor]
+    parent_id: component:accelerator-pedal
+    component_id: pedal_position_sensor
+    scope_level: core
+    keyword_groups:
+      - [pedal position sensor, apps, accelerator pedal position, 踏板位置传感器]
+      - [dual track, redundant sensor, 双轨信号, 冗余传感器]
+  - id: component:drive-by-wire
+    label_zh: 线控油门
+    label_en: Drive-by-Wire
+    aliases: [电控油门, 电子油门, DBW, drive by wire, electronic throttle, throttle-by-wire]
+    parent_id: component:throttle-quadrant
+    component_id: drive_by_wire
+    scope_level: core
+    keyword_groups:
+      - [drive-by-wire, drive by wire, dbw, throttle-by-wire, 线控油门, 电控油门, 电子油门]
+      - [no mechanical linkage, electronic control, 无机械拉索, 电控]
+  - id: component:electronic-throttle-control
+    label_zh: 电子节气门控制
+    label_en: Electronic Throttle Control (ETC/ETCS)
+    aliases: [电子节气门, ETC, ETCS, electronic throttle body, electronic throttle control system]
+    parent_id: component:drive-by-wire
+    component_id: electronic_throttle_control
+    scope_level: core
+    keyword_groups:
+      - [electronic throttle control, etc, etcs, electronic throttle body, 电子节气门控制]
+      - [torque demand, pedal map, drive-by-wire control, 转矩需求, 踏板 MAP]
+  - id: component:throttle-body
+    label_zh: 节气门体
+    label_en: Throttle Body
+    aliases: [节气门执行器, throttle valve, throttle actuator, electronic throttle body]
+    parent_id: component:electronic-throttle-control
+    component_id: throttle_body
+    scope_level: core
+    keyword_groups:
+      - [throttle body, throttle valve, throttle plate, 节气门体, 节气门阀片]
+      - [actuator, dc motor, geared motor, 执行器, 直流电机, 减速电机]
+  - id: component:cruise-control-throttle
+    label_zh: 定速巡航油门控制
+    label_en: Cruise Control Throttle Interface
+    aliases: [定速巡航, 巡航控制, cruise control, adaptive cruise, ACC]
+    parent_id: component:electronic-throttle-control
+    component_id: cruise_control_throttle
+    scope_level: core
+    keyword_groups:
+      - [cruise control, adaptive cruise, acc, 定速巡航, 巡航控制, 自适应巡航]
+      - [set speed, follow distance, throttle override, 设定车速, 跟车距离, 油门接管]
 relations:
   - subject_id: component:reverse-lever
     predicate: constrained_by
@@ -186,4 +247,25 @@ relations:
   - subject_id: component:thrust-control-law
     predicate: executed_by
     object_id: component:fadec
+    evidence_basis: curated
+  # Phase B 汽车油门关系链
+  - subject_id: component:pedal-position-sensor
+    predicate: measures
+    object_id: component:accelerator-pedal
+    evidence_basis: curated
+  - subject_id: component:electronic-throttle-control
+    predicate: receives_command_from
+    object_id: component:pedal-position-sensor
+    evidence_basis: curated
+  - subject_id: component:electronic-throttle-control
+    predicate: commands
+    object_id: component:throttle-body
+    evidence_basis: curated
+  - subject_id: component:drive-by-wire
+    predicate: implements
+    object_id: component:electronic-throttle-control
+    evidence_basis: curated
+  - subject_id: component:cruise-control-throttle
+    predicate: commands
+    object_id: component:electronic-throttle-control
     evidence_basis: curated

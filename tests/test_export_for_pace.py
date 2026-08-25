@@ -164,7 +164,7 @@ def test_build_export_missing_db_returns_empty(tmp_path):
     assert data["curated_patents"] == []
     assert data["cross_matches"] == []
     # 但 ontology yaml 仍能读(不依赖 DB)
-    assert data["coverage"]["throttle_components"] == 16
+    assert data["coverage"]["throttle_components"] == 22
     assert data["coverage"]["clause_entities"] == 15
 
 

@@ -92,9 +92,9 @@ def test_clean_build_has_expected_ontology_counts(built_db: Path) -> None:
         }
     assert rows == {
         "aircraft_family": 9,
-        "throttle_component": 16,
+        "throttle_component": 22,
         "regulatory_clause": 15,
-        "cpc_class": 20,
+        "cpc_class": 22,
     }
     assert referenced_models == model_ids
 

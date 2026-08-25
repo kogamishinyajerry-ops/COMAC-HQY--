@@ -61,6 +61,19 @@ entities:
     parent_id: cpc:F02C9/00
     scope_level: core
     aliases: [F02C9/46, F02C 9/46, FADEC sensor]
+  # Phase B: 汽车油门/加速踏板/线控油门/巡航 (B60K26 已存在)
+  - id: cpc:B60K31/00
+    label_zh: 车辆定速巡航与自适应巡航
+    label_en: Conjoint control of vehicle propulsion units (cruise/adaptive)
+    code: B60K31/00
+    scope_level: adjacent
+    aliases: [B60K31, B60K 31/00, cruise control, adaptive cruise, ACC]
+  - id: cpc:G05G1/00
+    label_zh: 操作件:操纵杆/踏板/手轮
+    label_en: "Controlling members: hand, foot, or steering-wheel operated"
+    code: G05G1/00
+    scope_level: adjacent
+    aliases: [G05G1, G05G 1/00, control lever, pedal, hand wheel, accelerator pedal]
 relations:
   - {subject_id: cpc:B64D31/10, predicate: related_to, object_id: cpc:B64D33/00, evidence_basis: curated}
   - {subject_id: cpc:B64D33/10, predicate: narrows, object_id: cpc:B64D33/00, evidence_basis: official_hierarchy}

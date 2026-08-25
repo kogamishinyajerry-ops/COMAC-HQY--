@@ -8,8 +8,9 @@
   rebuild       重建 SQLite 知识库 (跑 build_db.initialize)
   query         关键词查 patents / regulatory_constraints
   export        重新生成 outputs/pace_export.yaml (供 P-ACE / bridge 消费)
+  import        Phase A/B 扩 prior_art 检索池 (跑 scripts/import_prior_art_phase_a.py)
   patrol        跑 4 路巡检 → outputs/governance/
-  check         跑 17 项治理守卫
+  check         跑 18 项治理守卫
   stats         列出 db 表 + 计数
   curate        列 8 条 curated 专利 (供共同发明器使用)
   ontology      加载并打印本体 yaml
@@ -218,18 +219,37 @@ def cmd_export(args: argparse.Namespace) -> int:
 
 
 def cmd_import(args: argparse.Namespace) -> int:
-    """Phase A:扩展 prior_art 检索池(thin facade,跑 scripts/import_prior_art_phase_a.py)。"""
+    """Phase A/B:扩展 prior_art 检索池(thin facade,跑 scripts/import_prior_art_phase_a.py)。
+
+    Phase A 默认:航空油门台/反推/FADEC/EEC (CPC: B64D31/00 + F02C9 三子)
+    Phase B 默认:汽车油门/加速踏板/线控油门/ETC (CPC: B60K26/00 + B60K31/00 + G05G1/00)
+    """
     import subprocess
+
+    # Phase 感知默认 — 用户 --keyword/--cpc 显式传则覆盖
+    if args.phase == "A":
+        keyword_default = ["reverse thrust", "FADEC", "EEC"]
+        cpc_default = ["B64D31/00", "F02C9/00", "F02C9/28", "F02C9/46"]
+    elif args.phase == "B":
+        keyword_default = ["throttle", "accelerator", "drive-by-wire", "ETC", "electronic throttle", "pedal"]
+        cpc_default = ["B60K26/00", "B60K31/00", "G05G1/00"]
+    else:
+        keyword_default = None
+        cpc_default = None
+
+    keywords = args.keyword if args.keyword else keyword_default
+    cpcs = args.cpc if args.cpc else cpc_default
+
     cmd = [
         sys.executable,
         str(ROOT / "scripts" / "import_prior_art_phase_a.py"),
     ]
     cmd.extend(["--source", args.source])
-    if args.keyword:
-        for k in args.keyword:
+    if keywords:
+        for k in keywords:
             cmd.extend(["--keyword", k])
-    if args.cpc:
-        for c in args.cpc:
+    if cpcs:
+        for c in cpcs:
             cmd.extend(["--cpc", c])
     cmd.extend(["--limit-per-query", str(args.limit_per_query)])
     cmd.extend(["--filing-from", args.filing_from])
@@ -237,6 +257,7 @@ def cmd_import(args: argparse.Namespace) -> int:
         cmd.append("--dry-run")
     if args.bridge_migrate:
         cmd.append("--bridge-migrate")
+    print(f"[•] Phase {args.phase} import — source={args.source}, keywords={keywords}, cpcs={cpcs}")
     result = subprocess.run(cmd, env={**os.environ})
     return result.returncode
 
@@ -251,7 +272,7 @@ def cmd_patrol(args: argparse.Namespace) -> int:
 
 
 def cmd_check(args: argparse.Namespace) -> int:
-    """跑 17 项治理守卫。"""
+    """跑 18 项治理守卫。"""
     if not _ensure_db():
         return 1
     with _connect_ro() as conn:
@@ -259,7 +280,7 @@ def cmd_check(args: argparse.Namespace) -> int:
     failed = [r for r in results if not r.passed]
     for r in results:
         marker = "✓" if r.passed else "✗"
-        print(f"  {marker} {r.name:50s}  count={r.count:6d}  expect={r.expectation}")
+        print(f"  {marker} {r.name:50s}  detail={r.detail}")
     print(f"\n[•] {len(results) - len(failed)}/{len(results)} 守卫通过")
     return 0 if not failed else 1
 
@@ -356,13 +377,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     sub.add_parser("export", help="生成 pace_export.yaml (P-ACE 联动)").set_defaults(func=cmd_export)
 
-    sp_imp = sub.add_parser("import", help="Phase A:扩 prior_art 检索池")
+    sp_imp = sub.add_parser("import", help="Phase A/B:扩 prior_art 检索池")
+    sp_imp.add_argument("--phase", choices=["A", "B"], default="A",
+                        help="A=航空油门台/反推/FADEC/EEC;B=汽车油门/加速踏板/线控油门/ETC (默认 A)")
     sp_imp.add_argument("--source", default="all",
                         choices=["all", "uspto-od", "epo-ops", "google-patents-playwright"])
     sp_imp.add_argument("--keyword", action="append", default=None,
-                        help="可多次传,默认 3 词 (reverse thrust / FADEC / EEC)")
+                        help="可多次传,默认按 --phase:A=3 词 (reverse thrust/FADEC/EEC),B=6 词 (throttle/accelerator/drive-by-wire/ETC/electronic throttle/pedal)")
     sp_imp.add_argument("--cpc", action="append", default=None,
-                        help="可多次传,默认 4 CPC (B64D31/00 + F02C9 三子)")
+                        help="可多次传,默认按 --phase:A=4 CPC (B64D31/00+F02C9 三子),B=3 CPC (B60K26/00+B60K31/00+G05G1/00)")
     sp_imp.add_argument("--limit-per-query", type=int, default=500)
     sp_imp.add_argument("--filing-from", default="2000-01-01")
     sp_imp.add_argument("--dry-run", action="store_true", help="只打预算,不入库")
@@ -370,7 +393,7 @@ def build_parser() -> argparse.ArgumentParser:
     sp_imp.set_defaults(func=cmd_import)
 
     sub.add_parser("patrol", help="跑 4 路巡检").set_defaults(func=cmd_patrol)
-    sub.add_parser("check", help="跑 17 项治理守卫").set_defaults(func=cmd_check)
+    sub.add_parser("check", help="跑 18 项治理守卫").set_defaults(func=cmd_check)
     sub.add_parser("stats", help="db 表 + 计数").set_defaults(func=cmd_stats)
     sub.add_parser("curate", help="列 8 条 curated 专利").set_defaults(func=cmd_curate)
 
